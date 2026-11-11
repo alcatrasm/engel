@@ -2,27 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import { COURSE_UNITS, TopicCard } from "../data/courseData";
 
 export const FALLBACK_API_KEYS: string[] = [
-  "AIzaSyAaGCgVqISrQc7EzF8cZOBXQsQRrgfREK0",
-  "AIzaSyDGwt3_N1vu0uArQaADqN8nSR4xKJQYdg0",
-  "AIzaSyBktUIGYXogliSysyg3vZkKpw-N0lUCoCo",
-  "AIzaSyDG4dn-JBmuD6yqUvBQCOr9jtHFHiVP_L0",
-  "AIzaSyA-iZfPpcUVinQ3tlMrXW9HhBhXCyqyW4I",
-  "AIzaSyDfUd_iP7yoeEeQzdc_30Nfn6dXhn4Pm9U",
-  "AIzaSyBl9mVsi8MCoklKJS365D1q4p5qCjyb190",
-  "AIzaSyCPiE2mW5bWAK8V3DYClJxdeHvkrvAii9A",
-  "AIzaSyBh4e5K96vnhUytvA78kMbGcOXSvI8dNo4",
-  "AIzaSyCtNTb4ud0kB5bwR5CkeVjRs38WwVXJHlU",
-  "AIzaSyA2XGpRSdv6rvuhfajtwS74yU1GkkwbEhc",
-  "AIzaSyCllV8YanCkAJ5SYXCgAdpMu9VKsIS5xzI",
-  "AIzaSyCuBZ84EnJOVrbW0JC3eoCmDVhhFM6Zjns",
-  "AIzaSyDsYz4y-aU3J4SQfgK6obBZuIS522Cq35A",
-  "AIzaSyD9hyBA8aH-WqfGVDOQRmpR19sKRKVK6O4",
-  "AIzaSyBt_leNcmJbQbxJZxkrT57BvGBhnLPc6Bw",
-  "AIzaSyBxkKib-9BmvYpdMlRrkZgVp5ccOtnaIek",
-  "AIzaSyDFIt0dX1XbBjgpxsZ434QTOWwptbS-aGA",
-  "AIzaSyCz1LagzC5ZBRm-VxTclWDB_2p-1L90yao",
-  "AIzaSyAmMPoIyhKjJJGxBP_MXr4tL_FIv7Bhi-0",
-  "AIzaSyDm0braU7aFyip-VQBVfCQfv-n9fkxdmRg"
+  "AQ.Ab8RN6Jno6kP4JHH6zn0uE7v54jjOJcOpR2ujt0V6MRzfg3Kiw"
 ];
 
 export const MODEL_NAME = "gemini-flash-latest";
