@@ -271,7 +271,7 @@ export const StudyView: React.FC<StudyViewProps> = ({
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="text-xs font-semibold text-blue-600">
-              {activeUnit.order}. Ünite · Konu Kartı {safeIndex + 1} / {topics.length} (Toplam 60 Kart)
+              {activeUnit.order}. Ünite · Konu Kartı {safeIndex + 1} / {topics.length} (Toplam 80 Kart)
             </div>
             <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 leading-snug">
               {currentTopic.title}
@@ -313,7 +313,7 @@ export const StudyView: React.FC<StudyViewProps> = ({
           keepInMind={currentTopic.keepInMind}
         />
 
-        {/* 1. SALAĞA ANLATIR GİBİ (EN BASİT HALİ) */}
+        {/* 1. EN BASİT VE DURU ANLATIM */}
         <div className="bg-blue-50/80 border border-blue-200 rounded-2xl p-4 sm:p-5">
           <div className="flex items-center gap-2 text-xs font-bold text-blue-900 mb-1.5">
             <BookOpen className="w-4 h-4 text-blue-700 shrink-0" />

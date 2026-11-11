@@ -1,5 +1,5 @@
-import { UNIT_1_TOPICS, UNIT_2_TOPICS } from "./expandedTopicsUnit12";
-import { UNIT_3_TOPICS, UNIT_4_TOPICS } from "./expandedTopicsUnit34";
+import { UNIT_1_TOPICS, UNIT_2_TOPICS, UNIT_1_EXTRA_TOPICS } from "./expandedTopicsUnit12";
+import { UNIT_3_TOPICS, UNIT_4_TOPICS, UNIT_3_EXTRA_TOPICS } from "./expandedTopicsUnit34";
 
 export interface VisualSchemaItem {
   icon: string;
@@ -19,7 +19,7 @@ export interface TopicCard {
   unitId: string;
   title: string;
   subtitle: string;
-  eli5: string; // "En Basit Haliyle (Salağa Anlatır Gibi)"
+  eli5: string; // "En Basit Haliyle Öz Anlatım"
   bulletPoints: string[];
   practicalTip: string; // "Pratik Bilgi"
   examClue: string; // "Sınav İpucu"
@@ -81,18 +81,18 @@ export const COURSE_UNITS: CourseUnit[] = [
     order: 1,
     title: "1. Ünite: Kavramlar, Türler, Modeller ve Tarihçe",
     shortTitle: "Kavramlar & Modeller",
-    dateLabel: "1 Ekim 2026 Ders Notu · 15 Konu Kartı",
-    description: "Engelli tanımları, doğum öncesi/sırası/sonrası nedenler, tüm engel türleri (IDEA), Ahlaki-Tıbbi-Sosyal-İnsan Hakları modelleri, ICIDH, tarihsel süreç ve Normalleştirme ilkesi.",
+    dateLabel: "1 Ekim 2026 Ders Notu · 20 Konu Kartı",
+    description: "Engelli tanımları, doğum öncesi/sırası/sonrası nedenler, tüm engel türleri (IDEA), Ahlaki-Tıbbi-Sosyal-İnsan Hakları modelleri, ICIDH, Öjenik, Sağır Kültürü, Nöroçeşitlilik, Yardımcı Teknolojiler, Normalleştirme ve PIE.",
     pdfUrl: "/assets/aistudio/engellilerle_sosyal_hizmet_1_Ekim_2026_54cd51e6.pdf",
-    topics: UNIT_1_TOPICS
+    topics: [...UNIT_1_TOPICS, ...UNIT_1_EXTRA_TOPICS]
   },
   {
     id: "unit-2",
     order: 2,
     title: "2. Ünite: Engellilik Kuramları ve Sosyolojik Yaklaşımlar",
     shortTitle: "Engellilik Kuramları",
-    dateLabel: "15 Ekim 2026 Ders Notu · 15 Konu Kartı",
-    description: "Sosyal inşacı yaklaşım, etiketleme (Becker), damgalama/stigma (Goffman), ekolojik sistemler (Bronfenbrenner), feminist kuram, kesişimsellik, Crip teorisi, bedenleşme, Foucault ve güçlendirme.",
+    dateLabel: "15 Ekim 2026 Ders Notu · 20 Konu Kartı",
+    description: "Sosyal inşacı yaklaşım, etiketleme (Becker), damgalama/stigma (Goffman), ekolojik sistemler (Bronfenbrenner), feminist kuram, kesişimsellik, Crip teorisi, bedenleşme, Foucault, güçlendirme, Normalite ideolojisi (Lennard Davis), tıbbileştirme (Illich), engelli kimliği ve mikro-saldırılar.",
     pdfUrl: "/assets/aistudio/engellilerle_sosyal_hizmet_15_Ekim_2026_9b978dde.pdf",
     topics: UNIT_2_TOPICS
   },
@@ -101,18 +101,18 @@ export const COURSE_UNITS: CourseUnit[] = [
     order: 3,
     title: "3. Ünite: Engellilik, İnsan Hakları, BM CRPD ve Mevzuat",
     shortTitle: "İnsan Hakları & CRPD",
-    dateLabel: "22 Ekim 2026 Ders Notu · 15 Konu Kartı",
-    description: "Hayırseverlik vs İnsan Hakları, devletin 3 yükümlülüğü, biçimsel/maddi eşitlik, makul düzenleme, BM CRPD tüm kritik maddeleri (Md. 3-34), İhtiyari Protokol, Anayasa, 5378 ve 6 adımlı Erişim Zinciri.",
+    dateLabel: "22 Ekim 2026 Ders Notu · 20 Konu Kartı",
+    description: "Hayırseverlik vs İnsan Hakları, devletin 3 yükümlülüğü, biçimsel/maddi eşitlik, makul düzenleme, BM CRPD tüm kritik maddeleri (Md. 1-34), İhtiyari Protokol, Anayasa, 5378, 6 adımlı Erişim Zinciri, Habilitasyon/Rehabilitasyon ve TİHEK/Ombudsman hak arama yolları.",
     pdfUrl: "/assets/aistudio/engellilerle_sosyal_hizmet_22_Ekim_2026_06c9d6d7.pdf",
-    topics: UNIT_3_TOPICS
+    topics: [...UNIT_3_TOPICS, ...UNIT_3_EXTRA_TOPICS]
   },
   {
     id: "unit-4",
     order: 4,
     title: "4. Ünite: Fiziksel Engellilik, Bakım, Aile, İstihdam ve Vaka",
     shortTitle: "Fiziksel Engellilik & Uygulama",
-    dateLabel: "5 Kasım 2026 Ders Notu · 15 Konu Kartı",
-    description: "Amputasyon, omurilik yaralanması, Serebral Palsi, DMD/SMA/MS, DSÖ ICF (2001), Türkiye verileri, ÇÖZGER, kotalar (4857/657), 2022 ve 2828 yardımları, aile yas süreci, TRSM, etik dil ve Mert vakası.",
+    dateLabel: "5 Kasım 2026 Ders Notu · 20 Konu Kartı",
+    description: "Amputasyon, omurilik yaralanması, Serebral Palsi, DMD/SMA/MS, DSÖ ICF (2001), Türkiye verileri, ÇÖZGER, kotalar (4857/657), 2022 ve 2828 yardımları, aile yas süreci, TRSM, etik dil, Mert vakası, Afet ve Engellilik (DIDRM), Yaşlılık/Demans, Cinsel Haklar, Erişilebilirlik Komisyonları ve Destekli İstihdam.",
     pdfUrl: "/assets/aistudio/engellilerle_sosyal_hizmet_5_Kas_m_2026_df46ea9d.pdf",
     topics: UNIT_4_TOPICS
   }

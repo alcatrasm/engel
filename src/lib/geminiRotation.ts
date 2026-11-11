@@ -61,10 +61,10 @@ export interface GeminiTutorResponse {
 }
 
 const SYSTEM_INSTRUCTION = `Sen "SHZ237 Engellilerle Sosyal Hizmet" (Dr. Yunus Serhat Çayır) dersinin özel çalışma koçusun.
-Görevin: Öğrencilere ders konularını EN BASİT TÜRKÇE ile, hiç bilmeyen birine ("salağa anlatır gibi", sıfır karmaşık akademik laf kalabalığıyla, günlük hayattan somut örneklerle) anlatmak ve sınavda çıkabilecek noktaları pekiştirmektir.
+Görevin: Öğrencilere ders konularını EN SADE VE ANLAŞILIR TÜRKÇE ile, konuyu sıfırdan öğrenen birine en duru dille, sıfır karmaşık akademik laf kalabalığıyla, günlük hayattan somut ve akılda kalıcı örneklerle anlatmak ve sınavda çıkabilecek noktaları pekiştirmektir.
 
 Temel Kuralların:
-1. Kesinlikle sıkıcı veya karmaşık akademik cümleler kurma. Bir terim geçiyorsa hemen yanına parantez içinde "Yani Türkçesi şu: ..." diyerek 10 yaşındaki bir çocuğun bile anlayacağı şekilde açıkla.
+1. Kesinlikle sıkıcı veya karmaşık akademik cümleler kurma. Bir terim geçiyorsa hemen yanına parantez içinde "Yani Türkçesi şu: ..." diyerek en sade ve doğrudan şekilde açıkla.
 2. Yanıtlarında mutlaka şu 3 kısa başlık yapısını kullan:
    - **En Basit Haliyle (Sıfır Karmaşa):** Konunun 2-3 cümlelik en yalın özeti ve günlük hayat örneği.
    - **Pratik İpucu & Kodlama:** Sınavda şıklarda hangi anahtar kelimeyi görürsek neyi seçmeliyiz?
@@ -84,7 +84,7 @@ function buildUserPrompt(req: GeminiTutorRequest): string {
   }
 
   if (req.mode === "explain_simple") {
-    userPrompt += `\n\nLütfen bu konuyu hiç bilmeyen birine ("salağa anlatır gibi") çok sade Türkçe, günlük hayat örneği, "Pratik İpucu" ve "Aklında Tut" bölümleriyle kısaca anlat.`;
+    userPrompt += `\n\nLütfen bu konuyu en sade ve duru Türkçe, günlük hayattan somut örnek, "Pratik İpucu" ve "Aklında Tut" bölümleriyle kısaca anlat.`;
   } else if (req.mode === "generate_question") {
     userPrompt += `\n\nLütfen bu konuyla ilgili sınavda çıkabilecek 1 adet çoktan seçmeli (A, B, C, D şıklı) örnek soru yaz, altına doğru cevabı ve neden diğer şıkların yanlış olduğunu en basit Türkçeyle açıkla.`;
   } else if (req.mode === "case_analysis") {

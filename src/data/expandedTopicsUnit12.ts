@@ -689,5 +689,259 @@ export const UNIT_2_TOPICS: TopicCard[] = [
         { icon: "✊", label: "Baskı Karşıtı Uygulama", highlight: "Biz Olmadan Asla!", detail: "Sağlamcılığa karşı müracaatçıyla eşit ortaklık kurarak hak savunuculuğu yapma", color: "blue" }
       ]
     }
+  },
+  {
+    id: "u2-t16",
+    unitId: "unit-2",
+    title: "Normalite İdeolojisi ve Lennard Davis: 'Çan Eğrisi' ve İstatistik",
+    subtitle: "Modern toplum 'ortalama insanı' nasıl tek norm haline getirdi?",
+    eli5: "Lennard Davis çok çarpıcı bir gerçeği gösterir: 'Normal' kelimesi 1840'lara kadar dillerde yoktu! 19. yüzyılda Adolphe Quetelet adlı istatistikçi insanları ölçüp 'ortalama insan (l'homme moyen)' kavramını uydurdu ve çan eğrisini çizdi. Bu çan eğrisinin ortasında kalanlar 'makbul normal', kenarlarda kalanlar ise 'anormal / yetersiz' ilan edildi. Yani engellilik bedenlerin değil, modern istatistiğin ürettiği bir kategoridir.",
+    bulletPoints: [
+      "Lennard Davis ('Enforcing Normalcy'): 'Normal' kavramının tarihsel ve dilsel kökenini inceler; sanayi toplumu öncesinde insanların ideali 'kusursuz tanrılar/mitoloji' iken, 19. yüzyılda 'ortalama/normal insan' hedeflenmeye başlanmıştır.",
+      "Adolphe Quetelet ve Çan Eğrisi (Normal Dağılım): İnsan bedenlerinin ve özelliklerinin istatistiksel ortalaması 'ideal ve ahlaki norm' ilan edilmiştir.",
+      "Engelliliğin İnşası: Çan eğrisinin iki ucunda kalan bireyler (engelliler, deliler, norm dışı olanlar) patolojik ilan edilerek 'düzeltilmesi gereken sapmalar' olarak kodlanmıştır.",
+      "Sosyal Hizmet Eleştirisi: Müracaatçıları değerlendirirken 'normal gelişim eğrisine ne kadar uyuyor?' baskısı yerine, bireyin kendi özgül ritmine saygı gösterilmelidir."
+    ],
+    practicalTip: "Soruda 'Lennard Davis', 'Normal kavramının 19. yüzyılda ortaya çıkması', 'Çan eğrisi (Normal dağılım)' veya 'Adolphe Quetelet' geçiyorsa cevap Normalite İdeolojisidir!",
+    examClue: "Normalite ideolojisi, sağlamcılığın (ableism) bilimsel ve istatistiksel kılıfıdır.",
+    keepInMind: "Lennard Davis = Normalite İdeolojisi + Çan Eğrisi (Quetelet) + Normal Kavramının 19. Yüzyılda Üretilmesi.",
+    aiPromptSuggestion: "Lennard Davis'in 'Normalite İdeolojisi' ve çan eğrisi eleştirisini hiç bilmeyen birine anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Analiz · Normalite İdeolojisi ve Çan Eğrisi",
+      items: [
+        { icon: "📈", label: "Çan Eğrisi (19. Yüzyıl)", highlight: "Adolphe Quetelet", detail: "İstatistiksel ortalama insan uydurulup 'tek doğru model' ilan edildi", color: "amber" },
+        { icon: "🏷️", label: "Sapma Olarak Engel", highlight: "Lennard Davis", detail: "Ortalamanın dışında kalan her beden 'anormal ve eksik' olarak kodlandı", color: "rose" },
+        { icon: "🔓", label: "Eleştirel Çözüm", highlight: "Çeşitliliği Kucakla", detail: "İnsanı tek bir çan eğrisi standardına zorlamaktan vazgeçmek", color: "blue" }
+      ]
+    }
+  },
+  {
+    id: "u2-t17",
+    unitId: "unit-2",
+    title: "Medikalizasyon (Tıbbileştirme) ve İatrojenez (Ivan Illich)",
+    subtitle: "Toplumsal ve mimari sorunların 'bireysel hastalık' haline getirilmesi",
+    eli5: "Tıbbileştirme (Medikalizasyon); yoksulluk, adaletsizlik veya mimari engeller gibi sosyal sorunların 'tıbbın alanıymış gibi' gösterilip hapla, ameliyatla çözülmeye çalışılmasıdır. Ivan Illich ise 'İatrojenez (tıbbın yarattığı zarar)' kavramıyla uyarır: Tıp bazen insanları iyileştirmek yerine bağımlı hale getirir ve toplumsal mücadeleyi bastırır.",
+    bulletPoints: [
+      "Medikalizasyon (Tıbbileştirme): Yaşamın doğal evrelerinin (yaşlanma, üzüntü, beden farklılıkları) ve toplumsal engellerin tıbbi hastalık/tanı kategorilerine dönüştürülmesidir.",
+      "İatrojenez (Ivan Illich - 'Sağlığın Gaspı'): Tıbbın bizzat kendisinin ürettiği zararlardır (Klinik, Sosyal ve Kültürel iatrojenez).",
+      "Kültürel İatrojenez: İnsanların kendi acıları, kırılganlıkları ve yaşam zorluklarıyla baş etme kültürel becerilerini kaybedip tamamen tıp uzmanlarına bağımlı hale gelmesidir.",
+      "Sosyal Hizmet Direnci: Sosyal hizmet uzmanı müracaatçının sorununu 'ilaç dozu artırılsın' diye geçiştirmek yerine, ortamdaki çevresel ve ilişkisel engelleri çözmeye odaklanır."
+    ],
+    practicalTip: "Soruda 'Ivan Illich', 'İatrojenez (tıbbın zararı)' veya 'Sosyal/mimari sorunların tıbbi tanı ve ilaçla çözülmeye çalışılması (Tıbbileştirme)' geçiyorsa bu kartı hatırla!",
+    examClue: "Tıbbileştirme, iktidarların yapısal eşitsizlikleri gizlemek için kullandığı en yaygın tekniktir (örn. asansör yapmayıp engelliye 'depresyondasın, antidepresan iç' demek).",
+    keepInMind: "Medikalizasyon = Sosyal Sorunu Hastalık Sayma | İatrojenez (Ivan Illich) = Tıbbın Yarattığı Zarar ve Bağımlılık.",
+    aiPromptSuggestion: "Tıbbileştirme (Medikalizasyon) ve Ivan Illich'in İatrojenez kavramını engellilik alanı üzerinden örneklerle anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Şema · Tıbbileştirme (Medikalizasyon) Çarkı",
+      items: [
+        { icon: "🚧", label: "Sosyal / Mimari Sorun", highlight: "Rampasız Bina / Dışlanma", detail: "Birey dışarı çıkamadığı için mutsuz ve yalnız kalır", color: "blue" },
+        { icon: "💊", label: "Tıbbileştirme", highlight: "Hastalık Etiketi", detail: "Rampa yapmak yerine bireye 'ağır depresyon' teşhisi konur", color: "amber" },
+        { icon: "⚠️", label: "İatrojenez (Illich)", highlight: "Uzman Bağımlılığı", detail: "Toplumsal değişim yerine birey pasif tedavi tüketicisi yapılır", color: "rose" }
+      ]
+    }
+  },
+  {
+    id: "u2-t18",
+    unitId: "unit-2",
+    title: "Engelli Kimliği Gelişimi ve Forber-Pratt Modeli",
+    subtitle: "Kabullenme, aidiyet ve kolektif engelli kimliğine geçiş adımları",
+    eli5: "Bir birey sonradan engelli olduğunda veya büyüdüğünde pat diye hak savunucusu olmaz; aşamalı bir kimlik yolculuğundan geçer: Önce durumunu kabullenmeye çalışır, sonra diğer engellilerle tanışıp ortak deneyimi fark eder (kolektif kimlik), ardından haklarını savunmaya başlar ve en sonunda engelliliğini kişiliğinin doğal, zenginleştirici bir parçası olarak bütünleştirir.",
+    bulletPoints: [
+      "Bireysel vs Sosyal Kimlik: Engellilik yalnızca tıbbi bir rapor değil, aynı zamanda paylaşılan bir kültür, tarih ve sosyal kimliktir.",
+      "Forber-Pratt Engelli Kimliği Modeli (4 Statü/Aşama): 1) Kabullenme (Kişinin durumunu tanıması), 2) İlişkilenme / Bağ Kurma (Diğer engelli akranlarla temas ve izolasyondan çıkış), 3) Kolektif Kimlik / Dayanışma (Engelliler topluluğunun bir parçası olduğunu hissetme), 4) Bütünleşme / Savunuculuk (Engelli kimliğini gururla benimseyip hak savunuculuğu yapma).",
+      "Akran Danışmanlığının Gücü: Bir omurilik felçli için en dönüştürücü destek, aynı durumu yaşamış deneyimli bir akranıyla (peer mentor) sohbet etmektir.",
+      "Sosyal Hizmet Rolü: Uzman müracaatçıyı sadece pasif hizmet alıcısı olarak tutmaz; onu dernekler, spor kulüpleri ve akran gruplarıyla buluşturarak kimlik gelişimini destekler."
+    ],
+    practicalTip: "Soruda 'Engelli bireyin kendi engelini kabullenip diğer engellilerle dayanışma içine girerek hak savunuculuğu geliştirmesi süreci' sorulursa: Engelli Kimliği Gelişimi!",
+    examClue: "Mert vakasında Mert'in Omurilik Felçlileri Derneği'ndeki akran grubuyla buluşturulması doğrudan 'İlişkilenme ve Kolektif Kimlik' aşamasını tetikler.",
+    keepInMind: "Engelli Kimliği Gelişimi = Bireysel Tanıdan Kolektif Hak Bilincine ve Gurura Geçiş Yolculuğu.",
+    aiPromptSuggestion: "Engelli kimliği gelişim aşamalarını ve akran desteğinin bu süreçteki kritik rolünü açıklar mısın?",
+    visualSchema: {
+      title: "Görsel Merdiven · Engelli Kimliği Gelişim Basamakları",
+      items: [
+        { icon: "🌱", label: "1. Kabullenme", highlight: "Bireysel Farkındalık", detail: "Durumu inkar etmeyi bırakıp yeni beden gerçekliğiyle yüzleşme", color: "amber" },
+        { icon: "🤝", label: "2. Akran Teması", highlight: "Kolektif Aidiyet", detail: "Diğer engellilerle tanışıp 'Yalnız değilmişim' duygusunu yaşama", color: "blue" },
+        { icon: "✊", label: "3. Hak Savunuculuğu", highlight: "Bütünleşmiş Kimlik", detail: "Engelliliği bir utanç değil, gururlu bir kimlik ve hak mücadelesi görme", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u2-t19",
+    unitId: "unit-2",
+    title: "Mikro-Saldırılar (Microaggressions) ve İyiliksever Sağlamcılık",
+    subtitle: "'Kıyamam sana', 'Çok cesursun' gibi görünürde sevimli gizli ayrımcılıklar",
+    eli5: "Ayrımcılık her zaman küfür veya hakaretle olmaz; bazen en tatlı gülümsemeyle yapılır! Sokakta tek başına yürüyen engelliye 'Ayy maşallah ne kadar cesursun, evde oturmayıp çıkmışsın' demek ya da otobüste omzunu okşayıp 'Kıyamam sana' demek 'Mikro-Saldırı' ve 'İyiliksever Sağlamcılık'tır. Kişiyi çocuklaştırır (infantilize eder) ve eşit bir yetişkin olarak görmez.",
+    bulletPoints: [
+      "Engelliliğe Yönelik Mikro-Saldırılar: Günlük yaşamda engelli bireylere yönelik incitici, küçümseyici ve ötekileştirici sözlü veya davranışsal mesajlardır.",
+      "3 Mikro-Saldırı Türü: 1) Mikro-Saldırı (Açık ayrımcılık), 2) Mikro-Hakaret (Bireyin yetkinliğini küçümseme; örn. 'Körsün ama ne güzel giyinmişsin'), 3) Mikro-Geçersiz Kılma (Kişinin yaşadığı zorluğu yok sayma; örn. 'Hepimizin engelleri var, kafana takma').",
+      "İyiliksever Sağlamcılık (Benevolent Ableism): Acıma, aşırı yardım etme ve çocuklaştırma (infantilization) yoluyla bireyin özerkliğini zedeleyen sözde 'sevgi dolu' ayrımcılıktır.",
+      "Zoraki Yardım: Kişinin 'İstemiyorum, kendim yapabilirim' demesine rağmen tekerlekli sandalyesini zorla itmek veya kolundan çekmek iyi niyet değil, sınır ihlalidir!"
+    ],
+    practicalTip: "Soruda 'Aşırı korumacılık, acıma, çocuklaştırma ve yardımseverlik maskesi altına gizlenmiş ayrımcılık biçimi' sorulursa cevap: İyiliksever Sağlamcılık (Benevolent Ableism)!",
+    examClue: "Görünmez engeli olan birine 'Hiç de engelliye benzemiyorsun, maşallahın var' demek iltifat değil, bir 'Mikro-Geçersiz Kılma' saldırısıdır.",
+    keepInMind: "Mikro-Saldırı = Günlük İnce Ayrımcılıklar | İyiliksever Sağlamcılık = Acıma ve Çocuklaştırma Yoluyla Bağımlı Kılma.",
+    aiPromptSuggestion: "Engellilere yönelik mikro-saldırıları ve iyiliksever sağlamcılık örneklerini günlük diyaloglarla anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Uyarı · İyiliksever Sağlamcılığın 3 Maskesi",
+      items: [
+        { icon: "🧸", label: "Çocuklaştırma", highlight: "İnfantilization", detail: "Yetişkin bireye çocukmuş gibi ses tonuyla ve acıyarak konuşmak", color: "rose" },
+        { icon: "🦸", label: "Aşırı Övgü", highlight: "İlham Nesnesi Yapma", detail: "Sıradan bir işi (su içmeyi/sokağa çıkmayı) olağanüstü cesaret saymak", color: "amber" },
+        { icon: "✋", label: "Zorla Yardım", highlight: "Sınır İhlali", detail: "İstemediğini söylediği halde zorla bastonunu veya sandalyesini tutmak", color: "purple" }
+      ]
+    }
+  },
+  {
+    id: "u2-t20",
+    unitId: "unit-2",
+    title: "Kullanıcı Denetimli Hizmetler ve Kişisel Bütçe Modeli",
+    subtitle: "Hizmeti devlet veya aile değil, engelli bireyin kendisinin yönetmesi",
+    eli5: "Geleneksel sistemde belediye veya bakanlık engelliye 'Biz sana şu yemeği, şu saatte gelen şu bakıcıyı layık gördük, itiraz etme' der. Kullanıcı Denetimli Hizmetler (Kişisel Bütçe) ise devrim niteliğindedir: Devlet bakım parasını doğrudan engelli bireyin hesabına yatırır; kişi kendi asistanını kendisi mülakatla seçer, çalışma saatini kendisi belirler ve istemediği asistanı değiştirebilir!",
+    bulletPoints: [
+      "Kişisel Bütçe (Direct Payments / Personal Budgets): Devletin engelli bireye hizmeti ayni (paket) olarak dayatmak yerine, bütçeyi doğrudan bireye vererek hizmet alımını onun kontrolüne bırakmasıdır.",
+      "Kullanıcı Denetimi (User-Led Services): Hizmetin planlanması, sunumu ve değerlendirilmesinde karar vericinin doğrudan engelli birey olmasıdır.",
+      "Bağımsız Yaşam Hareketi (Ed Roberts - Berkeley): 1960'larda ABD'de tekerlekli sandalye kullanan üniversite öğrencilerinin kendi kişisel asistanlarını kendilerinin işe alıp yönetmesiyle başlamıştır.",
+      "Sosyal Hizmet Uzmanının Rol Değişimi: Uzman 'müracaatçı adına karar veren patron' olmaktan çıkar; bireyin bütçesini yönetmesine ve asistan bulmasına rehberlik eden bir 'destek uzmanı' haline gelir."
+    ],
+    practicalTip: "Soruda 'Hizmet paketinin doğrudan devletçe dayatılması yerine engelli bireye doğrudan nakit bütçe verilerek asistanını kendisinin seçip yönetmesi modeli' sorulursa: Kişisel Bütçe / Kullanıcı Denetimli Model!",
+    examClue: "Kişisel bütçe modeli, CRPD Madde 19 (Bağımsız Yaşam) ilkesinin dünyadaki en ileri uygulama aracıdır.",
+    keepInMind: "Kişisel Bütçe Modeli = Hizmeti Dayatma, Parayı Bireye Ver -> Kendi Asistanını ve Yaşamını Kendisi Yönetsin.",
+    aiPromptSuggestion: "Kişisel Bütçe (Personal Budget) modelini ve geleneksel bakım paketlerinden farkını anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Karşılaştırma · Paket Hizmet vs Kişisel Bütçe",
+      items: [
+        { icon: "📦", label: "Geleneksel Paket Hizmet", highlight: "Bürokratik Kontrol", detail: "Devlet yemeği ve bakıcıyı seçer; bireyin saat veya kişi seçme hakkı yoktur", color: "amber" },
+        { icon: "💳", label: "Kişisel Bütçe Modeli", highlight: "Kullanıcı Denetimi!", detail: "Bütçe bireye verilir; birey asistanını kendisi seçer, saatini kendisi belirler", color: "emerald" },
+        { icon: "🧭", label: "Sosyal Hizmet Rolü", highlight: "Rehberlik & Eşlik", detail: "Müracaatçıyı yönetmek yerine bütçe ve hak yönetiminde danışmanlık yapmak", color: "blue" }
+      ]
+    }
   }
 ];
+
+export const UNIT_1_EXTRA_TOPICS: TopicCard[] = [
+  {
+    id: "u1-t16",
+    unitId: "unit-1",
+    title: "Engellilik Tarihinde Öjenik (Eugenics) Hareketi ve Zorla Kısırlaştırma",
+    subtitle: "Francis Galton, Nazi T4 programı ve 'yaşamaya değmeyen hayatlar' vahşeti",
+    eli5: "19. yüzyılın sonunda Darwin'in kuzeni Francis Galton 'Öjenik (Eugenics)' adında tehlikeli bir fikir ortaya attı: 'Nasıl ki yarış atlarının en güçlülerini çiftleştirip zayıfları eliyorsak, insan ırkını da ıslah etmeliyiz; engelliler, zeka geriliği olanlar kısırlaştırılsın, üremesin!' Bu sapkın fikir ABD'de 60 binden fazla engellinin zorla kısırlaştırılmasına, Nazi Almanyası'nda ise 'Aktion T4' programıyla 200 binden fazla engellinin gaz odalarında katledilmesine yol açtı.",
+    bulletPoints: [
+      "Öjenik (Eugenics - Francis Galton): İnsan ırkını yapay seçilimle 'iyileştirme' ve genetik olarak 'kusurlu' sayılan bireylerin üremesini engelleme teorisidir.",
+      "Zorla Kısırlaştırma Yasaları: 20. yüzyılın ilk yarısında ABD (Buck v. Bell davası), İsveç ve birçok ülkede zihinsel ve fiziksel engelliler mahkeme kararlarıyla zorla kısırlaştırılmıştır.",
+      "Nazi Almanyası ve Aktion T4 (1939): Engelli bireyler 'yaşamaya değmeyen hayatlar (Lebensunwertes Leben)' ve devlete ekonomik yük ilan edilerek sistematik olarak öldürülmüştür.",
+      "Tarihsel Ders ve Sosyal Hizmet: Tıbbın ve devlet gücünün etik değerlerden koptuğunda engelli bedenleri nasıl yok edebileceğini gösteren en karanlık derstir."
+    ],
+    practicalTip: "Soruda 'Francis Galton', 'Öjenik (Eugenics)', 'Zorla kısırlaştırma' veya 'Nazi T4 programı' geçiyorsa bu karttaki tarihi süreci hatırla!",
+    examClue: "CRPD Madde 23 (Ev ve Aile Hayatına Saygı), engelli bireylerin doğurganlıklarını koruma ve rızaları dışında kısırlaştırılamama hakkını özellikle bu acı tarihe dayanarak güvence altına almıştır.",
+    keepInMind: "Öjenik (Francis Galton) = Engellileri Kısırlaştırma/Eleme Girişimi | Nazi Aktion T4 = Engellilerin Katliamı | CRPD = Doğurganlığı Koruma Hakkı.",
+    aiPromptSuggestion: "Öjenik (Eugenics) hareketinin engellilik tarihindeki yıkıcı etkilerini ve günümüz insan hakları anlayışına etkisini anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Tarih · Öjenik Hareketi ve Yaşanan Trajedi",
+      items: [
+        { icon: "🧬", label: "Öjenik Fikri", highlight: "Francis Galton", detail: "İnsan ırkını ıslah etme bahanesiyle engellileri 'ayıklama' teorisi", color: "rose" },
+        { icon: "⚖️", label: "Zorla Kısırlaştırma", highlight: "Hukuksuz Yasalar", detail: "Binlerce zihinsel ve fiziksel engelli bireyin üreme hakkı elinden alındı", color: "amber" },
+        { icon: "🕊️", label: "CRPD Madde 23", highlight: "Doğurganlığı Koruma", detail: "Hiç kimse rızası dışında kısırlaştırılamaz, aile kurma hakkı vardır", color: "blue" }
+      ]
+    }
+  },
+  {
+    id: "u1-t17",
+    unitId: "unit-1",
+    title: "Sağır Kültürü (Deaf Culture) ve Dilsel Azınlık Yaklaşımı",
+    subtitle: "Büyük 'D' (Deaf) ile küçük 'd' (deaf) farkı ve işaret dilinin zenginliği",
+    eli5: "İşitme engelliler dünyasında çok önemli bir ayrım vardır: Küçük 'd' (deaf) tıbbi işitme kaybını anlatır. Büyük 'D' (Deaf) ise kendilerini 'hasta veya engelli' olarak DEĞİL, kendi dili (İşaret Dili), kendi sanatı, mizahı ve geleneği olan 'Kültürel ve Dilsel bir Azınlık' olarak gören topluluğu anlatır! Tıpkı Türkçe veya Fransızca konuşanlar gibi, onlar da İşaret Dili konuşan bir kültürdür.",
+    bulletPoints: [
+      "Kültürel / Dilsel Azınlık Modeli: Sağırlığı tıbbi bir kusur/eksiklik değil, zengin bir dilsel ve kültürel çeşitlilik olarak kabul eder.",
+      "Büyük 'D' (Deaf) vs Küçük 'd' (deaf): Küçük 'd' odyometrik işitme kaybını; Büyük 'D' ise Sağır topluluğunun kültürünü, değerlerini ve işaret dilini benimseyen kültürel kimliği ifade eder.",
+      "Koklear İmplant Tartışması: Tıp dünyası bebeklere hemen biyonik kulak (koklear implant) takıp onları 'sağlamlaştırmaya' çalışırken; Sağır Kültürü savunucuları çocuğun işaret diliyle doğal kimliğini kazanma hakkını savunur.",
+      "CRPD Madde 30/4: Sağır bireylerin kendilerine özgü kültürel ve dilsel kimliklerinin (işaret dilleri ve sağır kültürü) tanınması ve desteklenmesi devlet yükümlülüğüdür."
+    ],
+    practicalTip: "Soruda 'Sağırlığı tıbbi bir engel olarak değil, işaret diline dayalı kültürel ve dilsel bir azınlık kimliği olarak gören yaklaşım' sorulursa: Sağır Kültürü (Deaf Culture)!",
+    examClue: "CRPD Madde 21 (İfade Özgürlüğü) ve Madde 30 (Kültürel Yaşama Katılım), ulusal işaret dillerinin resmi dil olarak tanınmasını şart koşar.",
+    keepInMind: "Sağır Kültürü (Büyük 'D' Deaf) = Engelli Değil, İşaret Diline Sahip Kültürel ve Dilsel Azınlık.",
+    aiPromptSuggestion: "Sağır Kültürü (Deaf Culture) nedir ve büyük 'D' ile küçük 'd' ayrımı ne anlama gelir?",
+    visualSchema: {
+      title: "Görsel Ayrım · Tıbbi Sağırlık vs Sağır Kültürü",
+      items: [
+        { icon: "🩺", label: "Tıbbi Bakış (küçük 'd')", highlight: "Odyometrik Kayıp", detail: "Kulağın duymamasını bozukluk görür; cihazla tamir etmeye odaklanır", color: "amber" },
+        { icon: "🤟", label: "Sağır Kültürü (Büyük 'D')", highlight: "Dilsel Azınlık", detail: "Kendine özgü işaret dili, kültürü ve mizahı olan eşit bir topluluk", color: "blue" },
+        { icon: "⚖️", label: "CRPD Madde 30", highlight: "Kültürel Kimlik", detail: "İşaret dillerinin ve sağır kültürünün resmi olarak tanınması güvencesi", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u1-t18",
+    unitId: "unit-1",
+    title: "Nöroçeşitlilik (Neurodiversity) Hareketi ve Otizm Kabulü",
+    subtitle: "Otizm, DEHB ve Disleksiyi 'hastalık' değil, beyin çeşitliliği görmek",
+    eli5: "Avustralyalı sosyolog Judy Singer 1990'larda 'Nöroçeşitlilik (Neurodiversity)' kavramını ortaya attı. Nasıl ki doğada biyolojik çeşitlilik (farklı ağaçlar, farklı çiçekler) bir zenginlikse; insan beyninin de farklı çalışma biçimleri (Otizm, DEHB, Disleksi) bir zenginliktir! Amaç otizmli insanı 'iyileştirmek veya normal insana benzetmek' değil; onun duyusal hassasiyetlerine saygı duyup ortamı uyarlamaktır.",
+    bulletPoints: [
+      "Nöroçeşitlilik (Neurodiversity - Judy Singer, 1998): İnsan beyinlerinin bilgi işleme, dikkat ve sosyalleşme biçimlerindeki farklılıkların doğal bir insan çeşitliliği olduğunu savunan yaklaşımdır.",
+      "Nörotipik vs Nöro-ıraksak: Toplumun çoğunluğunun sahip olduğu beyin yapısına 'Nörotipik (Neurotypical)'; Otizm, DEHB, Disleksi, Tourette gibi farklılıklara sahip olanlara 'Nöro-ıraksak / Nöro-farklı (Neurodivergent)' denir.",
+      "Maskeleme (Camouflaging / Masking): Nöro-farklı bireylerin dışlanmamak için nörotipik gibi davranmaya çalışmasıdır; bu durum ağır psikolojik tükenmişliğe yol açar.",
+      "Otizm Farkındalığı Değil, Otizm KABULÜ: 2 Nisan Dünya Otizm gününde artık acıma temelli 'mavi ışık yakma' yerine, istihdamda ve okulda duyusal dostu ortamlar ve tam kabul savunulmaktadır."
+    ],
+    practicalTip: "Soruda 'Judy Singer', 'Nöroçeşitlilik (Neurodiversity)', 'Beyin farklılıklarının doğal çeşitlilik kabul edilmesi' veya 'Maskeleme (Camouflaging)' geçiyorsa bu kartı hatırla!",
+    examClue: "Nöroçeşitlilik yaklaşımı, otizmli bireylerin el çırpma veya sallanma (stimming) gibi sakinleşme davranışlarının zorla engellenmesini insan hakları ihlali olarak görür.",
+    keepInMind: "Nöroçeşitlilik (Judy Singer) = Otizm, DEHB ve Disleksi Hastalık Değil, Doğal Beyin Çeşitliliğidir.",
+    aiPromptSuggestion: "Nöroçeşitlilik (Neurodiversity) yaklaşımını ve nörotipik ile nöro-ıraksak farkını örneklerle açıklar mısın?",
+    visualSchema: {
+      title: "Görsel Şema · Nöroçeşitlilik (Neurodiversity) Yelpazesi",
+      items: [
+        { icon: "🧠", label: "Doğal Beyin Çeşitliliği", highlight: "Judy Singer (1998)", detail: "Tek bir 'doğru beyin' yoktur; Otizm, DEHB, Disleksi doğal çeşitliliktir", color: "purple" },
+        { icon: "🎭", label: "Maskeleme Riski", highlight: "Tükenmişlik Sebebi", detail: "Nöro-farklı bireyin 'normalmiş gibi' rol yapmaya zorlanması ağır yüktür", color: "rose" },
+        { icon: "🌱", label: "Duyusal Uyarlama", highlight: "Dost Ortamlar", detail: "Kişiyi değiştirmek yerine gürültüyü, ışığı ve sınıfı duyusal dostu yapmak", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u1-t19",
+    unitId: "unit-1",
+    title: "Yardımcı Teknolojiler ve Dijital Erişilebilirlik (WCAG)",
+    subtitle: "Ekran okuyucular, alternatif klavyeler ve web erişilebilirlik ilkeleri (POUR)",
+    eli5: "Tekerlekli sandalyeli için rampa neyse; görme engelli, işitme engelli veya kollarını kullanamayan biri için de 'Yardımcı Teknolojiler' ve 'Dijital Erişilebilirlik' odur! Ekran okuyucu (JAWS, TalkBack), göz takip cihazları ve sesli komut sistemleri bireyi bağımsız kılar. Bir web sitesinin erişilebilir olması için ise POUR ilkelerine (Algılanabilir, İşletilebilir, Anlaşılabilir, Sağlam) uyması şarttır.",
+    bulletPoints: [
+      "Yardımcı Teknoloji (Assistive Technology): Engelli bireylerin işlevsel kapasitelerini artıran, sürdüren veya geliştiren her türlü yazılım, donanım ve cihazdır (örn. ekran okuyucu, Braille ekran, göz takip cihazı, akıllı protez).",
+      "Dijital Erişilebilirlik ve WCAG (Web Content Accessibility Guidelines): Web sitelerinin ve mobil uygulamaların tüm kullanıcılar için erişilebilir olmasını sağlayan uluslararası standartlardır.",
+      "POUR İlkeleri: 1) Algılanabilir (Perceivable - resimlerde alternatif metin, videoda altyazı), 2) İşletilebilir (Operable - mouse olmadan sadece klavyeyle kullanılabilirlik), 3) Anlaşılabilir (Understandable - sade dil ve hata uyarıları), 4) Sağlam (Robust - farklı ekran okuyucularla uyumlu kod).",
+      "Sosyal Hizmet Önemi: e-Devlet, online bankacılık veya hastane randevu sistemi erişilebilir değilse engelli birey başkasına bağımlı kalır ve mahremiyeti ihlal edilir."
+    ],
+    practicalTip: "Soruda 'Web erişilebilirliğinin 4 temel POUR ilkesi nedir?' diye sorulursa: Algılanabilir, İşletilebilir, Anlaşılabilir, Sağlam (Perceivable, Operable, Understandable, Robust)!",
+    examClue: "Görsellere 'alt-text (alternatif açıklama metni)' eklenmemesi, ekran okuyucu kullanan bir görme engellinin o bilgiyi hiç alamamasına yol açan temel bir dijital erişim ihlalidir.",
+    keepInMind: "Yardımcı Teknoloji = Bağımsızlık Aracı | Dijital Erişilebilirlik = POUR (Algılanabilir, İşletilebilir, Anlaşılabilir, Sağlam).",
+    aiPromptSuggestion: "Yardımcı teknolojileri ve web erişilebilirliğinin 4 temel ilkesini (POUR) günlük örneklerle anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Standart · Dijital Erişilebilirliğin 4 Sütunu (POUR)",
+      items: [
+        { icon: "👁️", label: "P - Algılanabilir", highlight: "Alternatif Metin", detail: "Resimlerin alt yazısı, videoların sesli betimlemesi ve altyazısı olmalıdır", color: "blue" },
+        { icon: "⌨️", label: "O - İşletilebilir", highlight: "Tam Klavye Erişimi", detail: "Mouse kullanamayan biri sadece klavye veya sesle siteyi yönetebilmelidir", color: "emerald" },
+        { icon: "💡", label: "U & R - Anlaşılır & Sağlam", highlight: "Sade Dil & Uyum", detail: "Karmaşık olmayan yönergeler ve tüm ekran okuyucu cihazlarla tam uyum", color: "purple" }
+      ]
+    }
+  },
+  {
+    id: "u1-t20",
+    unitId: "unit-1",
+    title: "Sosyal Hizmet Müdahalesinde Çevresi İçinde Birey (PIE) ve Savunuculuk",
+    subtitle: "Sorunu müracaatçıya yıkmadan çok boyutlu vaka değerlendirmesi yapmak",
+    eli5: "Sosyal hizmetin en temel ilkesi 'Çevresi İçinde Birey (Person-in-Environment - PIE)' yaklaşımıdır. Kapımızı çalan engelli bir müracaatçıya baktığımızda 'Bu adam neden sinirli ve içe kapanık?' diye kişiyi suçlamayız; içinde yaşadığı asansörsüz binaya, alamadığı maaşa, ailenin tükenmişliğine ve toplumun önyargılarına birlikte bakarız. Uzman sadece rapor veren memur değil, müracaatçının haklarını savunan bir 'Savunucu (Advocate)'dur.",
+    bulletPoints: [
+      "Çevresi İçinde Birey (Person-in-Environment - PIE): Bireyin davranışlarını, psikolojisini ve yaşam zorluklarını içinde bulunduğu fiziksel, sosyal, kültürel ve ekonomik çevreyle etkileşimi içinde değerlendirmektir.",
+      "Sorunun Kaynağı Nerede?: Bireysel yetersizlikte değil; bireyin ihtiyaçları ile çevrenin sunduğu kaynaklar ve engeller arasındaki uyumsuzluktadır.",
+      "Bütüncül Değerlendirme Alanları: 1) Biyopsikososyal durum, 2) Aile dinamikleri ve bakım yükü, 3) Fiziksel/mimari çevre, 4) Gelir ve istihdam durumu, 5) Yasal haklar ve kurumsal bağlantılar.",
+      "Sosyal Hizmet Savunuculuğu: Hakları ihlal edilen, hizmetten mahrum bırakılan veya bürokratik engellere takılan engelli bireyin haklarını kurumlar ve yasalar karşısında aktif olarak savunmaktır."
+    ],
+    practicalTip: "Soruda 'Engelli bireyin sorununu tek başına bireyin biyolojik veya psikolojik kusuru olarak değil, çevresel ve kurumsal sistemlerle etkileşimi içinde ele alan temel sosyal hizmet yaklaşımı' sorulursa cevap: Çevresi İçinde Birey (PIE)!",
+    examClue: "Savunuculuk (Advocacy), engelli birey adına her şeyi yapmak demek DEĞİLDİR; bireyin kendi sesini duyurabilmesi için 'Öz-Savunuculuk (Self-Advocacy)' becerilerini güçlendirmektir.",
+    keepInMind: "Çevresi İçinde Birey (PIE) = Birey + Aile + Çevre + Kurumlar Arasındaki Etkileşim | Sosyal Hizmet = Güçlendirme & Savunuculuk.",
+    aiPromptSuggestion: "Sosyal hizmetteki 'Çevresi İçinde Birey (PIE)' yaklaşımını engelli bir müracaatçı vakası üzerinden açıklar mısın?",
+    visualSchema: {
+      title: "Görsel Model · Çevresi İçinde Birey (PIE) Etkileşimi",
+      items: [
+        { icon: "👤", label: "Birey", highlight: "Biyopsikososyal Özellik", detail: "Kişinin yetenekleri, duyguları, sağlık durumu ve hedefleri", color: "blue" },
+        { icon: "🏘️", label: "Çevre & Kurumlar", highlight: "Fiziksel & Sosyal Alan", detail: "Aile desteği, okul, işyeri, mimari engeller ve belediye hizmetleri", color: "amber" },
+        { icon: "⚖️", label: "Sosyal Hizmet Uzmanı", highlight: "Köprü & Savunuculuk", detail: "Bireyi çevresiyle uyumlu ve haklarını kullanabilir hale getiren köprü", color: "emerald" }
+      ]
+    }
+  }
+];
+

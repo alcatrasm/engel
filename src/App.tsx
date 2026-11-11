@@ -54,15 +54,6 @@ export default function App() {
     setActiveTab("ai");
   };
 
-  const handleAskAiFromQuiz = (questionText: string, explanationText: string) => {
-    setAiQueuedPrompt(
-      `Şu sınav sorusunu ve diğer şıkların neden yanlış olduğunu hiç bilmeyen birine en basit şekilde açıklar mısın?\n\nSoru: ${questionText}\nKısa Bilgi: ${explanationText}`
-    );
-    setAiQueuedContext("Test Sorusu Açıklaması");
-    setAiQueuedMode("explain_simple");
-    setActiveTab("ai");
-  };
-
   const handleStartUnitQuiz = (unitId: string) => {
     setQuizUnitId(unitId);
     setActiveTab("quiz");
@@ -160,10 +151,7 @@ export default function App() {
         )}
 
         {activeTab === "quiz" && (
-          <QuizView
-            initialUnitId={quizUnitId}
-            onAskAiForQuestion={handleAskAiFromQuiz}
-          />
+          <QuizView initialUnitId={quizUnitId} />
         )}
 
         {activeTab === "ai" && (

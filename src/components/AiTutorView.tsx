@@ -30,7 +30,7 @@ const QUICK_PROMPTS: {
   },
   {
     label: "⚖️ Makul Düzenleme Farkı",
-    prompt: "Biçimsel eşitlik, maddi eşitlik, erişilebilirlik, evrensel tasarım ve makul düzenleme kavramlarını günlük hayattan tek bir okul örneğiyle salağa anlatır gibi anlatır mısın?",
+    prompt: "Biçimsel eşitlik, maddi eşitlik, erişilebilirlik, evrensel tasarım ve makul düzenleme kavramlarını günlük hayattan tek bir okul örneğiyle en duru ve sade dille anlatır mısın?",
     context: "Engellilik ve İnsan Hakları",
     mode: "explain_simple"
   },
@@ -65,7 +65,7 @@ export const AiTutorView: React.FC<AiTutorViewProps> = ({
       id: "welcome",
       role: "assistant",
       content:
-        "Merhaba! Ben SHZ237 Engellilerle Sosyal Hizmet dersinin yapay zeka çalışma koçuyum.\n\nÜstteki hazır butonlardan birine tıklayabilir veya anlamadığın herhangi bir konuyu aşağıya yazabilirsin. Sana **en basit Türkçe ile ('salağa anlatır gibi')** ve sınav şifreleriyle anlatacağım!"
+        "Merhaba! Ben SHZ237 Engellilerle Sosyal Hizmet dersinin yapay zeka çalışma koçuyum.\n\nÜstteki hazır butonlardan birine tıklayabilir veya aklına takılan herhangi bir konuyu aşağıya yazabilirsin. Sana **en sade, anlaşılır Türkçe ile** ve sınav şifreleriyle yardımcı olacağım!"
     }
   ]);
 

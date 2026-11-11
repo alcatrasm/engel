@@ -12,21 +12,22 @@ import {
   RotateCcw,
   Sparkles,
   Pin,
-  HelpCircle,
   Lightbulb,
   ChevronLeft,
   ChevronRight,
-  Shuffle
+  Shuffle,
+  Loader2,
+  X
 } from "lucide-react";
+import { askGeminiTutorClient } from "../lib/geminiRotation";
 
 interface QuizViewProps {
   initialUnitId?: string;
-  onAskAiForQuestion: (questionText: string, explanationText: string) => void;
+  onAskAiForQuestion?: (questionText: string, explanationText: string) => void;
 }
 
 export const QuizView: React.FC<QuizViewProps> = ({
-  initialUnitId = "all",
-  onAskAiForQuestion
+  initialUnitId = "all"
 }) => {
   const [unitFilter, setUnitFilter] = useState<string>(initialUnitId);
   const [customRandomSet, setCustomRandomSet] = useState<QuizQuestion[] | null>(null);
@@ -34,11 +35,19 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   const [showClue, setShowClue] = useState(false);
 
+  // Inline AI states to answer right on the Quiz page without switching tabs
+  const [inlineAiLoading, setInlineAiLoading] = useState(false);
+  const [inlineAiResponse, setInlineAiResponse] = useState<string | null>(null);
+  const [inlineAiError, setInlineAiError] = useState<string | null>(null);
+  const [inlineAiForQuestionId, setInlineAiForQuestionId] = useState<string | null>(null);
+
   useEffect(() => {
     setUnitFilter(initialUnitId);
     setCustomRandomSet(null);
     setCurrentIndex(0);
     setShowClue(false);
+    setInlineAiResponse(null);
+    setInlineAiError(null);
   }, [initialUnitId]);
 
   const unitPool = useMemo(() => getQuestionsByUnit(unitFilter), [unitFilter]);
@@ -48,16 +57,20 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const currentQuestion = questions[safeIndex];
   const scoreSummary = calculateQuizScore(questions, selectedAnswers);
 
-  // Sliding window of 10 question buttons around safeIndex so UI stays ultra-clean even with 256 questions
+  // Sliding window of 10 question buttons around safeIndex
   const windowSize = 10;
   const windowStart = Math.floor(safeIndex / windowSize) * windowSize;
   const visibleSlice = questions.slice(windowStart, windowStart + windowSize);
+
+  const letters = ["A", "B", "C", "D"];
 
   const handleSelectUnitFilter = (id: string) => {
     setUnitFilter(id);
     setCustomRandomSet(null);
     setCurrentIndex(0);
     setShowClue(false);
+    setInlineAiResponse(null);
+    setInlineAiError(null);
   };
 
   const handleStartRandomExam = () => {
@@ -65,6 +78,8 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setCustomRandomSet(picked);
     setCurrentIndex(0);
     setShowClue(false);
+    setInlineAiResponse(null);
+    setInlineAiError(null);
   };
 
   const handleSelectOption = (questionId: string, optionIndex: number) => {
@@ -82,6 +97,68 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setSelectedAnswers(next);
     setCurrentIndex(0);
     setShowClue(false);
+    setInlineAiResponse(null);
+    setInlineAiError(null);
+  };
+
+  const handleAskInlineAi = async () => {
+    if (!currentQuestion) return;
+    const userChoice = selectedAnswers[currentQuestion.id];
+    const userChoiceText =
+      typeof userChoice === "number"
+        ? `Öğrencinin İşaretlediği Şık: ${letters[userChoice]} (${currentQuestion.options[userChoice] || ""})`
+        : "Öğrenci henüz bir şık işaretlemedi.";
+
+    const promptText = `Aşağıdaki sınav sorusunu adım adım analiz et:
+Soru: "${currentQuestion.question}"
+Şıklar:
+A) ${currentQuestion.options[0]}
+B) ${currentQuestion.options[1]}
+C) ${currentQuestion.options[2]}
+D) ${currentQuestion.options[3]}
+
+Doğru Şık: ${letters[currentQuestion.correctIndex]} (${currentQuestion.options[currentQuestion.correctIndex]})
+${userChoiceText}
+
+Lütfen:
+1. Doğru cevabın neden kesinlikle doğru olduğunu açıkla.
+2. Diğer seçeneklerin (ve özellikle öğrencinin işaretlediği şıkkın) neden bu soruya uymadığını açıkla.
+3. Bu soru sınavda tekrar çıkarsa kaçırmamak için 1 cümlelik pratik şifre (Aklında Tut) ver.
+Anlatımın en sade, duru ve anlaşılır Türkçe ile olsun.`;
+
+    setInlineAiLoading(true);
+    setInlineAiError(null);
+    setInlineAiForQuestionId(currentQuestion.id);
+
+    try {
+      const res = await askGeminiTutorClient({
+        prompt: promptText,
+        context: `Soru #${safeIndex + 1}: ${currentQuestion.question.slice(0, 60)}...`,
+        mode: "explain_simple"
+      });
+      setInlineAiResponse(res.text);
+    } catch (err: unknown) {
+      setInlineAiError(
+        err instanceof Error ? err.message : "AI Hoca yanıt veremedi. Lütfen tekrar deneyin."
+      );
+    } finally {
+      setInlineAiLoading(false);
+    }
+  };
+
+  const renderFormattedText = (text: string) => {
+    const cleaned = text.replace(/^#{1,4}\s*/gm, "");
+    const parts = cleaned.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return (
+          <strong key={index} className="font-bold text-slate-900">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      return <span key={index}>{part}</span>;
+    });
   };
 
   if (!currentQuestion) {
@@ -265,7 +342,6 @@ export const QuizView: React.FC<QuizViewProps> = ({
         {/* Options */}
         <div className="grid grid-cols-1 gap-2.5">
           {currentQuestion.options.map((opt, optIdx) => {
-            const letters = ["A", "B", "C", "D"];
             const isThisSelected = userChoice === optIdx;
             const isThisCorrect = currentQuestion.correctIndex === optIdx;
 
@@ -307,44 +383,123 @@ export const QuizView: React.FC<QuizViewProps> = ({
           })}
         </div>
 
-        {/* Instant Explanation Box when Answered */}
+        {/* Instant Detailed Explanation Box when Answered */}
         {isAnswered && (
           <div className="pt-3 border-t border-slate-100 space-y-3">
-            <div className="bg-blue-50/80 border border-blue-200 rounded-xl p-4 space-y-1.5">
-              <div className="text-xs font-bold text-blue-950 flex items-center gap-1.5">
-                <HelpCircle className="w-4 h-4 text-blue-700" />
-                <span>
-                  {isCorrect
-                    ? "Harika! Doğru Cevap:"
-                    : "Neden Bu Şık Doğru? (Basit Açıklama):"}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-800 leading-relaxed">
-                {currentQuestion.simpleExplanation}
-              </p>
-            </div>
+            {/* If Wrong: Show distinct "Senin Seçtiğin Şık Neden Yanlış?" + "Doğru Cevap Neden Doğru?" */}
+            {!isCorrect ? (
+              <div className="space-y-2.5">
+                {/* 1. Neden Yanlış */}
+                <div className="bg-rose-50/90 border border-rose-200 rounded-xl p-4 space-y-1.5">
+                  <div className="flex items-center gap-2 text-xs font-bold text-rose-900">
+                    <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                    <span>
+                      Senin Seçimin: {letters[userChoice]} ({currentQuestion.options[userChoice]}) — Neden Yanlış?
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-rose-950 leading-relaxed">
+                    İşaretlediğin <strong>{letters[userChoice]} seçeneği</strong> bu soru kökündeki kriteri karşılamaz. Soruda istenen temel kavram bu şık ile uyuşmamaktadır.
+                  </p>
+                </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-emerald-50/80 border border-emerald-200 rounded-xl p-3.5">
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-emerald-950">
-                <Pin className="w-4 h-4 text-emerald-700 shrink-0" />
+                {/* 2. Neden Doğru */}
+                <div className="bg-emerald-50/90 border border-emerald-200 rounded-xl p-4 space-y-1.5">
+                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-900">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>
+                      Doğru Cevap: {letters[currentQuestion.correctIndex]} ({currentQuestion.options[currentQuestion.correctIndex]}) — Neden Doğru?
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-emerald-950 leading-relaxed">
+                    {currentQuestion.simpleExplanation}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              /* If Correct: Clean Celebration + Explanation */
+              <div className="bg-emerald-50/90 border border-emerald-200 rounded-xl p-4 space-y-1.5">
+                <div className="flex items-center gap-2 text-xs font-bold text-emerald-900">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>
+                    Harika! Doğru Cevap: {letters[currentQuestion.correctIndex]} ({currentQuestion.options[currentQuestion.correctIndex]})
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-emerald-950 leading-relaxed">
+                  {currentQuestion.simpleExplanation}
+                </p>
+              </div>
+            )}
+
+            {/* Aklında Tut & Inline AI Hoca Trigger Button */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-amber-50/80 border border-amber-200 rounded-xl p-3.5">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-amber-950">
+                <Pin className="w-4 h-4 text-amber-700 shrink-0" />
                 <span>
                   <strong>Aklında Tut:</strong> {currentQuestion.keepInMind}
                 </span>
               </div>
 
               <button
-                onClick={() =>
-                  onAskAiForQuestion(
-                    currentQuestion.question,
-                    currentQuestion.simpleExplanation
-                  )
-                }
-                className="min-h-[38px] px-3 py-1.5 text-xs font-semibold text-blue-700 bg-white hover:bg-blue-50 border border-blue-200 rounded-lg flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                onClick={handleAskInlineAi}
+                disabled={inlineAiLoading}
+                className="min-h-[38px] px-3.5 py-1.5 text-xs font-semibold text-blue-700 bg-white hover:bg-blue-50 border border-blue-200 rounded-lg flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer disabled:opacity-60 transition-colors shadow-2xs"
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>AI Hoca'ya Sor</span>
+                {inlineAiLoading ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin text-blue-600" />
+                    <span>AI Hoca Hazırlıyor...</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                    <span>AI Hoca'ya Sor (Bu Sayfada Açıkla)</span>
+                  </>
+                )}
               </button>
             </div>
+
+            {/* Inline AI Hoca Answer Display (DIRECTLY ON THIS PAGE) */}
+            {inlineAiResponse && inlineAiForQuestionId === currentQuestion.id && (
+              <div className="bg-gradient-to-br from-indigo-50/95 to-blue-50/95 border-2 border-indigo-200 rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between gap-2 border-b border-indigo-100 pb-2.5">
+                  <div className="flex items-center gap-2 text-xs font-bold text-indigo-950">
+                    <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
+                    <span>AI Hoca Soru Analizi & Şık Karşılaştırması</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={handleAskInlineAi}
+                      disabled={inlineAiLoading}
+                      className="text-[11px] font-semibold text-indigo-700 hover:text-indigo-900 px-2.5 py-1 rounded-lg bg-white border border-indigo-200 cursor-pointer"
+                    >
+                      Yeniden Sor
+                    </button>
+                    <button
+                      onClick={() => setInlineAiResponse(null)}
+                      aria-label="Kapat"
+                      className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-white/60 cursor-pointer transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+                <div className="text-xs sm:text-sm text-slate-800 leading-relaxed whitespace-pre-line space-y-1">
+                  {renderFormattedText(inlineAiResponse)}
+                </div>
+              </div>
+            )}
+
+            {inlineAiError && inlineAiForQuestionId === currentQuestion.id && (
+              <div className="bg-rose-50 border border-rose-200 rounded-xl p-3 text-xs text-rose-800 flex items-center justify-between gap-2">
+                <span>{inlineAiError}</span>
+                <button
+                  onClick={handleAskInlineAi}
+                  className="font-bold underline text-rose-900 cursor-pointer"
+                >
+                  Tekrar Dene
+                </button>
+              </div>
+            )}
           </div>
         )}
 

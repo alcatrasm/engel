@@ -683,5 +683,262 @@ export const UNIT_4_TOPICS: TopicCard[] = [
     examClue: "Valilik bünyesinde binaları ve toplu taşımayı denetleyen resmi kurulun tam adı: 'Erişilebilirlik İzleme ve Denetleme Komisyonu'dur (5378 sayılı Kanun).",
     keepInMind: "Mert Vakası = Kurum Bakımı Son Çaredir | Mikro = Rapor/Maaş/Psikososyal/İŞKUR | Mezzo = Aile Danışmanlığı/Akran Grubu/Ev Tadilatı | Makro = Belediye & Erişilebilirlik Komisyonu.",
     aiPromptSuggestion: "24 yaşındaki Mert (Parapleji) vakasını ICF modeliyle ve Mikro, Mezzo, Makro müdahale adımlarıyla sınavda tam puan alacak şekilde yazar mısın?"
+  },
+  {
+    id: "u4-t16",
+    unitId: "unit-4",
+    title: "Afet ve Acil Durumlarda Engellilik: Kapsayıcı Afet Riski Azaltma (DIDRM)",
+    subtitle: "6 Şubat depremleri dersleri, tahliye zinciri ve kesintisiz elektrik ihtiyacı",
+    eli5: "Deprem, sel veya yangın olduğunda 'Herkes binayı merdivenlerden terk etsin' anonsu tekerlekli sandalyeli için ölüm tuzağıdır! Görme engelli karanlıkta kaçamaz, işitme engelli sireni duyamaz, solunum cihazına bağlı engellinin elektriği kesilirse hayatı tehlikeye girer. 'Engellileri Kapsayan Afet Yönetimi (DIDRM)', her mahallede engellilerin önceden haritalandırılmasını ve erişilebilir çadır/konteyner kentler kurulmasını şart koşar.",
+    bulletPoints: [
+      "Kapsayıcı Afet Riski Azaltma (Disability-Inclusive Disaster Risk Management - DIDRM): Afet öncesi hazırlık, tahliye, kurtarma, çadır/konteyner yerleşimi ve yeniden inşa süreçlerinin engellilerin gereksinimlerine göre tasarlanmasıdır.",
+      "CRPD Madde 11 (Risk Durumları ve İnsani Acil Haller): Taraf devletler silahlı çatışma, insani acil durumlar ve doğal afetlerde engelli bireylerin korunmasını ve güvenliğini sağlamak için gerekli tüm tedbirleri alır.",
+      "Afet Alanında 4 Kritik İhtiyaç: 1) Engelli nüfusun önceden tespiti ve kişiye özel tahliye planı, 2) Erişilebilir geçici barınma (rampalı çadır/konteyner, alaturka değil alafranga engelli tuvaleti), 3) Elektriğe bağımlı cihazlar (oksijen konsantratörü, aspiratör, akülü sandalye) için kesintisiz jeneratör, 4) Kaybolan/kırılan protez, tekerlekli sandalye ve kronik ilaçların acil temini.",
+      "Sosyal Hizmet Koordinasyonu: Sahadaki sosyal hizmet uzmanları afetten etkilenen engelli bireyleri hızla kayıt altına alır, psiko-sosyal destek ve yardımcı araç tedarikini organize eder."
+    ],
+    practicalTip: "Soruda 'CRPD Madde 11', 'Doğal afetlerde ve acil durumlarda engellilerin güvenliği ve tahliyesi' veya 'DIDRM' geçiyorsa bu kartı hatırla!",
+    examClue: "6 Şubat 2023 depremleri, geçici barınma alanlarında engelli tuvaletlerinin ve rampaların bulunmamasının engellileri nasıl ikincil bir felakete sürüklediğini gösteren acı bir örnektir.",
+    keepInMind: "CRPD Madde 11 = Afet ve Acil Durumlarda Koruma | DIDRM = Kapsayıcı Afet Yönetimi & Kesintisiz Güç/Erişilebilir Çadır.",
+    aiPromptSuggestion: "Afet ve acil durumlarda engelli bireylerin yaşadığı özgül riskleri ve sosyal hizmet uzmanının afet sahasındaki rollerini anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Plan · Kapsayıcı Afet Yönetiminin (DIDRM) 3 Ayağı",
+      items: [
+        { icon: "🚨", label: "1. Erken Uyarı & Tahliye", highlight: "Erişilebilir Alarm", detail: "Sesli siren + flaşörlü ışık ve her engelli için atanmış mahalle tahliye sorumlusu", color: "rose" },
+        { icon: "⚡", label: "2. Yaşamsal Destek", highlight: "Cihaz & İlaç", detail: "Solunum cihazları için jeneratör, yedek akü, sonda, bez ve hayati ilaç temini", color: "amber" },
+        { icon: "⛺", label: "3. Engelsiz Barınma", highlight: "Rampalı Konteyner", detail: "Erişilebilir girişli çadır, alafranga engelli tuvaleti ve psikososyal destek", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u4-t17",
+    unitId: "unit-4",
+    title: "Yaşlılık, Demans ve Engellilik Kesişimi: Geriatrik Sosyal Hizmet",
+    subtitle: "Nüfusun yaşlanması, 75+ yaşta %44,7 yürüme zorluğu ve Alzheimer bakımı",
+    eli5: "Engellilik sadece gençlikte başlayan bir durum değildir; her insan yeterince yaşarsa engelli adayıdır! TÜİK verilerine göre Türkiye'de 75 yaş ve üzerindeki insanların neredeyse YARISI (%44,7) yardımsız yürüyemez hale gelir. Buna Demans ve Alzheimer gibi bellek kayıpları da eklenince 'Geriatrik Engellilik' ortaya çıkar. Yaşlanan anne-baba ile engelli evladın birbirine bakmaya çalıştığı 'çift taraflı yaşlılık' en zorlu sosyal hizmet vakalarındandır.",
+    bulletPoints: [
+      "Demografik Dönüşüm: Türkiye hızla yaşlanan bir ülkedir; ortalama yaşam süresi uzadıkça kronik hastalıklar ve yaşlılığa bağlı yeti kayıpları artmaktadır.",
+      "TÜİK Sağlık Araştırması Verisi: 75 yaş ve üzerindeki bireylerin %44,7'si yardım veya yardımcı araç olmadan yürüyememektedir.",
+      "Demans ve Alzheimer Hastalığı: Bellek, yön bulma ve günlük yaşam becerilerinde ilerleyici kayıp yaratan bilişsel engelliliktir; hasta kadar bakım veren aileyi de yoğun bir tükenmişliğe sürükler.",
+      "İki Kuşaklı Engellilik Krizi: 75 yaşındaki bir annenin 50 yaşındaki zihinsel engelli evladına bakamaması durumudur; acilen gündüzlü bakım merkezleri ve palyatif sosyal hizmet müdahalesi gerekir."
+    ],
+    practicalTip: "Slayttaki sayı: 75 yaş ve üstünde yardımsız yürüyememe oranı = %44,7! Yaşlılık ile engelliliğin birleştiği alana 'Geriatrik Sosyal Hizmet' denir.",
+    examClue: "Yaşlı bireyler yeti kaybı yaşadıklarında kendilerini 'engelli' olarak tanımlamaktan çekinebilirler (damgalanma korkusu); bu nedenle haklara erişim için özel bilgilendirme gerekir.",
+    keepInMind: "75+ Yaş = %44,7 Yürüyememe Oranı | Demans & Alzheimer = Bilişsel Geriatrik Engel | Çözüm = Gündüzlü Yaşlı Bakım Merkezleri.",
+    aiPromptSuggestion: "Yaşlılık ve engellilik kesişimini, 75+ yaş verilerini ve Alzheimer hastası olan ailelerde sosyal hizmet desteğini açıklar mısın?",
+    visualSchema: {
+      title: "Görsel Veri · Yaşlılık ve Engellilik Kesişimi",
+      items: [
+        { icon: "👵", label: "75+ Yaş Verisi", highlight: "%44,7 Yürüme Kaybı", detail: "İleri yaş grubunda nüfusun neredeyse yarısı hareket desteğine muhtaçtır", color: "blue" },
+        { icon: "🧠", label: "Demans & Alzheimer", highlight: "Bilişsel Kayıp", detail: "Yön kaybı, unutkanlık ve bakım vereni tüketen 7/24 gözetim ihtiyacı", color: "purple" },
+        { icon: "🤝", label: "Gündüzlü Bakım", highlight: "Aktif Yaşlanma", detail: "Huzurevine yatırmak yerine mahallede gündüzlü sosyal kulüpler ve evde destek", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u4-t18",
+    unitId: "unit-4",
+    title: "Cinsellik, Üreme Hakları ve Mahremiyet Eğitimi",
+    subtitle: "Aseksüelleştirme miti, beden dokunulmazlığı ve cinsel sağlık hakkı",
+    eli5: "Toplumda engelliler hakkında çok büyük iki yanlış önyargı vardır: Ya 'Onlar melek, cinsellikleri hiç yoktur (aseksüeldir)' sanılır, ya da 'Onlar dürtülerini kontrol edemez' diye korkulur! Oysa engelli bireyler de herkes gibi cinsel ve üreme sağlığı haklarına sahiptir. Sosyal hizmet uzmanı ailelere 'Beden Dokunulmazlığı / Mahremiyet Eğitimi' vererek istismarı önler ve bireyin yetişkin haklarını savunur.",
+    bulletPoints: [
+      "Aseksüelleştirme Miti (Desexualization): Engelli bireylerin romantik ve cinsel duyguları, beden arzuları ve üreme hakları olmayan 'sonsuz çocuklar' gibi görülmesidir.",
+      "Aşırı Cinselleştirme ve Tehlike Algısı: Özellikle zihinsel engelli erkeklerin haksız yere 'dürtüsel tehdit' olarak etiketlenmesi ve toplumdan tecrit edilmesidir.",
+      "CRPD Madde 23 (Ev ve Aile Hayatına Saygı) & Madde 25: Engellilerin evlenme, aile kurma, çocuk sahibi olma ve cinsel sağlık/üreme sağlığı eğitimine eşit erişim hakkını güvenceye alır.",
+      "Mahremiyet ve Beden Dokunulmazlığı Eğitimi: Zihinsel ve otizmli bireylere 'İyi dokunuş - Kötü dokunuş', 'Özel bölgeler', 'Hayır diyebilme' ve kapıyı çalma gibi mahremiyet kurallarının öğretilerek istismardan korunmasıdır."
+    ],
+    practicalTip: "Soruda 'Engelli bireylerin cinsiyetsiz ve aseksüel kabul edilerek üreme ve aile kurma haklarının yok sayılması' hangi CRPD maddesiyle çelişir derse: Madde 23!",
+    examClue: "Zihinsel engelli gençlerin istismara uğramasının en büyük nedeni cinsellik konusunda bilgisiz bırakılmaları ve 'itaatkâr olmaya' şartlandırılmalarıdır.",
+    keepInMind: "Engelli Birey Çocuk Değildir! | CRPD Madde 23 = Evlilik ve Aile Kurma Hakkı | Mahremiyet Eğitimi = İstismara Karşı En Güçlü Kalkan.",
+    aiPromptSuggestion: "Engelli bireylerin cinsel hakları, mahremiyet eğitimi ve toplumdaki yanlış tabuları sosyal hizmet perspektifinden anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Tablo · Engellilik ve Cinsel Haklar Gerçeği",
+      items: [
+        { icon: "❌", label: "Yanlış Toplumsal Tabu", highlight: "Cinsiyetsizleştirme", detail: "Engellileri 'çocuk/melek' sayıp duygularını ve üreme haklarını yok saymak", color: "rose" },
+        { icon: "⚖️", label: "CRPD Madde 23 & 25", highlight: "Evlilik & Üreme Sağlığı", detail: "Aile kurma, çocuk sahibi olma ve aydınlatılmış cinsel sağlık eğitimi hakkı", color: "blue" },
+        { icon: "🛡️", label: "Mahremiyet Eğitimi", highlight: "Beden Dokunulmazlığı", detail: "Özel bölgeler, 'Hayır' diyebilme becerisi ve istismara karşı korunma kalkanı", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u4-t19",
+    unitId: "unit-4",
+    title: "Erişilebilirlik İzleme ve Denetleme Komisyonları (Valilikler) ve Standartlar",
+    subtitle: "5378 sayılı Kanun denetimleri, 'Erişilebilirlik Belgesi' ve TSE standartları",
+    eli5: "Bir bina veya otobüs kafaya göre 'Ben rampa yaptım oldu' diyemez! Türkiye'de 81 il valiliğinde 'Erişilebilirlik İzleme ve Denetleme Komisyonları' vardır. Bu komisyonda mühendisler, mimarlar ve engelli dernekleri temsilcileri kamu binalarını, kaldırımları ve otobüsleri TSE standartlarına (rampa eğimi %5-8, kapı genişliği en az 90 cm vb.) göre metreyle denetler, uygun olanlara resmi bayrak ve belge verir, uymayanlara ceza keser.",
+    bulletPoints: [
+      "Hukuki Dayanak: 5378 sayılı Engelliler Hakkında Kanun ve Erişilebilirlik İzleme ve Denetleme Yönetmeliği.",
+      "Komisyonun Yapısı: Aile ve Sosyal Hizmetler İl Müdürlüğü koordinasyonunda, Valilik bünyesinde; Çevre-Şehircilik, İçişleri, Ulaştırma temsilcileri ile ENGELLİ KONFEDERASYONLARI temsilcilerinden oluşur.",
+      "Denetim Alanları: 1) Kamuya açık tüm binalar (hastane, okul, adliye, AVM), 2) Açık alanlar (kaldırımlar, yaya geçitleri, parklar), 3) Şehir içi ve şehirlerarası toplu taşıma araçları.",
+      "TSE Standartları Örnekleri: Rampa eğimi azami %5-8 olmalı, rampa genişliği en az 100 cm olmalı, kapı temiz geçiş genişliği en az 90 cm olmalı, hissedilebilir yüzey sarı şeritleri standartlara uygun olmalıdır.",
+      "Erişilebilirlik Belgesi ve Bayrağı: Denetimden tam not alan kurumlara 'Erişilebilirlik Belgesi' ve logosu asılır; uymayan kurumlara idari para cezası uygulanır."
+    ],
+    practicalTip: "Soruda 'Valilikler bünyesinde kamu binalarını, kaldırımları ve otobüsleri denetleyen resmi kurulun adı nedir?' diye sorulursa: Erişilebilirlik İzleme ve Denetleme Komisyonu!",
+    examClue: "Komisyon kararlarında engelli örgütleri temsilcilerinin bulunması 'Bizim hakkımızda biz olmadan asla' ilkesinin idari denetimdeki örneğidir.",
+    keepInMind: "Valilik Erişilebilirlik Komisyonu = 5378 Denetimi + Bina/Kaldırım/Toplu Taşıma + TSE Standartları + İdari Para Cezası.",
+    aiPromptSuggestion: "Erişilebilirlik İzleme ve Denetleme Komisyonlarının yapısını, görevlerini ve rampa/kapı TSE standartlarını anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Denetim Şeması · Erişilebilirlik Komisyonu (Valilik)",
+      items: [
+        { icon: "🏛️", label: "Valilik Komisyonu", highlight: "5378 Sayılı Kanun", detail: "Mimar, mühendis ve engelli konfederasyon temsilcilerinden oluşan resmi kurul", color: "blue" },
+        { icon: "📏", label: "TSE Standartları", highlight: "Ölçülebilir Kriterler", detail: "Rampa eğimi %5-8, kapı genişliği 90 cm, sesli uyarı ve hissedilebilir sarı çizgi", color: "amber" },
+        { icon: "🚩", label: "Erişilebilirlik Belgesi", highlight: "Tescil & Ceza", detail: "Standartları karşılayan kuruma resmi bayrak/belge; uymayana idari para cezası", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u4-t20",
+    unitId: "unit-4",
+    title: "Mesleki Rehabilitasyon, İş Koçluğu ve Destekli İstihdam (Supported Employment)",
+    subtitle: "Korumalı atölyelerden açık piyasada iş koçuyla istihdama geçiş modeli",
+    eli5: "Zihinsel veya otizmli bir gencin işe girmesi için sadece 'Sana şu fabrikada iş bulduk, git çalış' demek yetmez; ilk gün bocalar ve işi bırakır. 'Destekli İstihdam (Supported Employment)' modelinde gencin yanına bir 'İş Koçu (Job Coach)' verilir. İş koçu gençle birlikte işyerine gider, fotokopi çekmeyi veya masayı temizlemeyi birlikte yapar, çalışma arkadaşlarına otizmi anlatır ve genç alıştıkça desteğini yavaşça geri çeker!",
+    bulletPoints: [
+      "Mesleki Rehabilitasyon: Engelli bireyin ilgi, yetenek ve işlevsellik düzeyine uygun mesleki eğitim alarak istihdama hazırlanması sürecidir.",
+      "Destekli İstihdam Modeli (Supported Employment - 'Yerleştir ve Eğit'): Geleneksel 'Önce eğit, hazır olunca işe yerleştir' modelinin yerine; 'Önce açık iş piyasasında gerçek bir işe yerleştir, işyerinde iş başında eğit' felsefesidir.",
+      "İş Koçu (Job Coach): Engelli çalışana iş ortamında görev analizleri yapan, iş becerilerini birebir öğreten, işveren ve çalışma arkadaşlarıyla köprü kuran uzmandır.",
+      "Solma / Geri Çekilme (Fading): Çalışan işi bağımsız yapmaya başladıkça iş koçunun desteğini aşamalı olarak azaltması, ancak kriz anlarında yeniden devreye girmesidir.",
+      "Korumalı İşyerleri: Açık piyasada doğrudan çalışamayacak zihinsel/ruhsal engelli bireyler için devlet teşvikiyle kurulan özel donanımlı üretim atölyeleridir."
+    ],
+    practicalTip: "Soruda 'Engelli bireyi önce açık piyasada gerçek bir işe yerleştirip ardından işyerinde bir iş koçu (job coach) eşliğinde iş başında eğitme modeli' sorulursa cevap: DESTEKLİ İSTİHDAM (Supported Employment)!",
+    examClue: "Destekli istihdam, tecrit edici korumalı atölyelerin yerini alan en çağdaş sosyal içerme modelidir.",
+    keepInMind: "Destekli İstihdam = Yerleştir ve Eğit | İş Koçu (Job Coach) = Yanında Birebir Rehber | Fading = Desteğin Aşamalı Azaltılması.",
+    aiPromptSuggestion: "Destekli İstihdam (Supported Employment) ve İş Koçluğu modelinin adımlarını bir zihinsel engelli genç örneğiyle anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Süreç · Destekli İstihdam (Supported Employment) Adımları",
+      items: [
+        { icon: "🎯", label: "1. Eşleştirme & Yerleşim", highlight: "Açık İş Piyasası", detail: "Korumalı tecrit yerine herkesle birlikte çalışılacak gerçek bir işe yerleştirme", color: "blue" },
+        { icon: "🤝", label: "2. İş Koçu Eşliği", highlight: "İş Başında Eğitim", detail: "İş koçu çalışanla birlikte mesaiye girer, görevleri basitleştirerek öğretir", color: "emerald" },
+        { icon: "🕊️", label: "3. Solma (Fading)", highlight: "Bağımsız Çalışma", detail: "Çalışan öğrendikçe koç geri çekilir, uzaktan izler; çalışan özgüven kazanır", color: "purple" }
+      ]
+    }
   }
 ];
+
+export const UNIT_3_EXTRA_TOPICS: TopicCard[] = [
+  {
+    id: "u3-t16",
+    unitId: "unit-3",
+    title: "CRPD Madde 1: Amaç ve Sözleşmenin 'Engellilik' Tanımı",
+    subtitle: "Tıbbi noksanlık ile çevresel bariyerlerin etkileşimi olarak engel",
+    eli5: "BM CRPD Sözleşmesinin 1. Maddesi engelliliği şöyle tanımlar: 'Engelli bireyler; çeşitli engellerle (bariyerlerle) karşılaştıklarında, diğerleriyle eşit şekilde topluma tam ve etkili katılımlarını engelleyen uzun süreli fiziksel, zihinsel, ruhsal ve duyusal bozuklukları olan kişilerdir.' Yani sözleşme engeli bedende değil, beden ile çevredeki engellerin ÇARPIŞMASINDA tanımlar!",
+    bulletPoints: [
+      "CRPD Madde 1 (Amaç): Engellilerin tüm insan hakları ve temel özgürlüklerden tam ve eşit şekilde yararlanmasını teşvik etmek, korumak ve sağlamak; doğuştan sahip oldukları onura saygıyı güçlendirmektir.",
+      "Sözleşmenin Dinamik Engellilik Tanımı: Engellilik sabit/kapalı bir liste değildir; gelişen ve dönüşen bir kavramdır (Evolving concept).",
+      "Tanımın 2 Temel Bileşeni: 1) Uzun süreli fiziksel, zihinsel, ruhsal veya duyusal hasar/noksanlık, 2) Çeşitli tutumsal ve çevresel engellerle (bariyerlerle) etkileşim.",
+      "Sonuç Şartı: Bu etkileşimin 'topluma tam, etkili ve eşit katılımı engellemesi' durumunda hukuki anlamda engellilik ortaya çıkar."
+    ],
+    practicalTip: "Soruda 'CRPD Madde 1'e göre engelliliğin tanımında hangi iki unsurun etkileşimi esastır?' derse: 'Uzun süreli noksanlıklar ile çevresel/tutumsal engellerin etkileşimi'!",
+    examClue: "Sözleşme geçici kırıkları veya kısa süreli hastalıkları değil, 'uzun süreli (long-term)' noksanlıkları kapsar.",
+    keepInMind: "CRPD Madde 1 = Onura Saygı & Eşit Hak | Engellilik Tanımı = Uzun Süreli Noksanlık + Çevresel Bariyerler Etkileşimi.",
+    aiPromptSuggestion: "BM CRPD Madde 1'deki engellilik tanımını ve bunun tıbbi model tanımından farkını açıklar mısın?",
+    visualSchema: {
+      title: "Görsel Formül · CRPD Madde 1 Engellilik Tanımı",
+      items: [
+        { icon: "🫀", label: "Uzun Süreli Noksanlık", highlight: "Fiziksel, Bilişsel, Duyusal", detail: "Bedensel, zihinsel veya duyusal işlev farklılığı", color: "blue" },
+        { icon: "🚧", label: "+ Çevresel Bariyerler", highlight: "Tutum ve Mimari Engel", detail: "Asansörsüz bina, önyargı, ayrımcı mevzuat ve dışlama", color: "rose" },
+        { icon: "⚖️", label: "= CRPD Engellilik", highlight: "Katılımın Engellenmesi", detail: "Haklardan eşit yararlanamama ve toplumsal dışlanma hali", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u3-t17",
+    unitId: "unit-3",
+    title: "CRPD Madde 4: Taraf Devletlerin Genel Yükümlülükleri ve Mevzuat Taraması",
+    subtitle: "Ayrımcı kanunları yürürlükten kaldırma, araştırma ve engellilere danışma",
+    eli5: "Madde 4 devletlere ödev listesi verir: 1) Ayrımcılık yapan tüm eski kanunları çöpe atacaksın! 2) Yeni binaları ve teknolojileri en baştan evrensel tasarımla yapacaksın. 3) Engellilerle ilgili her kararda engelli örgütlerine (DPO) bizzat danışacaksın!",
+    bulletPoints: [
+      "Madde 4 (Genel Yükümlülükler): Devletlerin sözleşmede tanınan hakları hayata geçirmek için üstlendiği sistemik ödevlerdir.",
+      "Mevzuat Uyumu: Ayrımcılık içeren mevcut yasa, yönetmelik, gelenek ve uygulamaları değiştirmek veya yürürlükten kaldırmak.",
+      "Evrensel Tasarım ve Ar-Ge: Yeni teknolojiler ve ürünlerin en baştan engelsiz tasarlanması için araştırma-geliştirmeyi teşvik etmek ve uygun maliyetli kılmak.",
+      "Madde 4/3 - Katılım ve Danışma Yükümlülüğü: Engellileri ilgilendiren her türlü politika ve yasa yapım sürecinde, engelli çocukları da temsil eden ENGELLİ ÖRGÜTLERİYLE (DPO) YAKIN İSTİŞAREDE BULUNMAK ve onları sürece etkin şekilde dahil etmek zorunludur."
+    ],
+    practicalTip: "Soruda 'CRPD Madde 4/3'e göre devletlerin politika üretirken kimlerle yakın istişare içinde olması zorunludur?' derse cevap: Engellileri temsil eden örgütlerle (DPO)!",
+    examClue: "Ekonomik, sosyal ve kültürel haklarda 'kademeli gerçekleşme (progressive realization)' ilkesi geçerli olsa da, derhal uygulanması gereken asgari çekirdek yükümlülükler vardır.",
+    keepInMind: "CRPD Madde 4 = Eski Ayrımcı Yasaları Kaldırma + Evrensel Tasarım Ar-Ge + Engelli Örgütleriyle Yakın İstişare (Md. 4/3).",
+    aiPromptSuggestion: "CRPD Madde 4'ün taraf devletlere yüklediği genel yükümlülükleri ve engelli örgütleriyle istişare şartını açıklar mısın?",
+    visualSchema: {
+      title: "Görsel Taahhüt · CRPD Madde 4 Devlet Ödevleri",
+      items: [
+        { icon: "📜", label: "Mevzuat Ayıklama", highlight: "Ayrımcı Yasaları Kaldır", detail: "Mevzuattaki tüm vesayetçi ve dışlayıcı hükümleri temizlemek", color: "rose" },
+        { icon: "🌐", label: "Evrensel Tasarım", highlight: "Ar-Ge ve Teknoloji", detail: "Yeni ürün ve mekanları herkes için baştan erişilebilir üretmek", color: "blue" },
+        { icon: "🤝", label: "İstişare Şartı (Md. 4/3)", highlight: "Engelli Örgütlerine Danış", detail: "Hiçbir yasa ve kararı engelli örgütlerinin onayı olmadan almamak", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u3-t18",
+    unitId: "unit-3",
+    title: "CRPD Madde 20 (Kişisel Hareketlilik) ve Madde 26 (Habilitasyon / Rehabilitasyon)",
+    subtitle: "Yardımcı araçlara erişim ile doğuştan/sonradan kazanılan beceriler",
+    eli5: "Madde 20 'Kişisel Hareketlilik' der ki: Akülü sandalye, beyaz baston veya protez lüks değildir; kişinin istediği zamanda ve ödenebilir fiyatla bu araçlara ulaşması devletin görevidir. Madde 26'da ise iki kritik kelime vardır: 'Habilitasyon', doğuştan engelli bir çocuğun daha önce hiç yapmadığı becerileri (kaşık tutma, konuşma) ilk kez öğrenmesidir. 'Rehabilitasyon' ise kaza geçirip bu beceriyi kaybeden birinin onu yeniden kazanmasıdır!",
+    bulletPoints: [
+      "Madde 20 (Kişisel Hareketlilik): Engelli bireylerin kendi istedikleri tarzda, zamanda ve uygun maliyetle bağımsız hareketliliğini sağlama hakkıdır (kaliteli tekerlekli sandalye, protez, rehber köpek, hareketlilik eğitimi).",
+      "Madde 26 (Habilitasyon ve Rehabilitasyon): Bireyin azami bağımsızlığını, bedensel, zihinsel, sosyal ve mesleki becerilerini kazanmasını veya yeniden elde etmesini sağlayan bütüncül hizmetlerdir.",
+      "Habilitasyon vs Rehabilitasyon Ayrımı (Sınav Sorusu!): Habilitasyon = Doğuştan engeli olan çocuğun hiç sahip olmadığı işlev ve becerileri İLK KEZ edinmesi. Rehabilitasyon = Sonradan hastalık/kaza sonucu kaybedilen becerilerin YENİDEN kazandırılmasıdır.",
+      "Erken Müdahale İlkesi: Habilitasyon ve rehabilitasyon hizmetleri mümkün olan en erken evrede başlamalı ve bireyin evine/toplumuna en yakın yerde sunulmalıdır."
+    ],
+    practicalTip: "Habilitasyon ve Rehabilitasyon farkını asla unutma: İLK KEZ beceri öğrenme = HABİLİTASYON (Doğuştan). KAYBEDİLEN beceriyi geri kazanma = REHABİLİTASYON (Sonradan)!",
+    examClue: "Rehber köpek (Guide dog) kullanan görme engelli bir bireyin kamu binasına veya restorana köpeğiyle alınmaması Madde 9 ve Madde 20 ihlalidir.",
+    keepInMind: "Md.20 Kişisel Hareketlilik (Bastona/Sandalyeye Erişim) | Habilitasyon = İlk Kez Beceriyi Kazanma | Rehabilitasyon = Yeniden Kazanma.",
+    aiPromptSuggestion: "Habilitasyon ile Rehabilitasyon arasındaki farkı ve CRPD Madde 20 Kişisel Hareketlilik hakkını anlatır mısın?",
+    visualSchema: {
+      title: "Görsel Ayrım · Habilitasyon vs Rehabilitasyon (Madde 26)",
+      items: [
+        { icon: "👶", label: "Habilitasyon (İlk Kez)", highlight: "Doğuştan Engel", detail: "SP'li veya otizmli çocuğun daha önce bilmediği becerileri ilk kez öğrenmesi", color: "purple" },
+        { icon: "🔄", label: "Rehabilitasyon (Yeniden)", highlight: "Sonradan Edinilmiş", detail: "Kaza sonrası felç geçiren gencin kaybedilen yürüme/iş becerisini yeniden kazanması", color: "blue" },
+        { icon: "🦽", label: "Kişisel Hareketlilik (Md.20)", highlight: "Cihaz & Rehber Köpek", detail: "Uygun maliyetli akülü sandalye, beyaz baston ve hareket özgürlüğü", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u3-t19",
+    unitId: "unit-3",
+    title: "CRPD Madde 31 (İstatistik ve Veri Toplama) ve Madde 32 (Uluslararası İşbirliği)",
+    subtitle: "Görünmeyen nüfus politika yapamaz: Gizlilik, insan hakları ve kalkınma",
+    eli5: "Eğer bir ülkede kaç tane engelli olduğunu, nerede yaşadıklarını, okula gidip gitmediklerini tam sayamazsanız; onlar için bütçe ayıramazsınız, rampa yapamazsınız! Madde 31 devlete 'Engellilik verilerini insan hakları ve mahremiyet standartlarına uygun olarak topla ve kamuoyuyla paylaş' der. Madde 32 ise zengin ülkelerin yoksul ülkelere engellilik projelerinde teknoloji ve hibe desteği vermesini düzenler.",
+    bulletPoints: [
+      "Madde 31 (İstatistik ve Veri Toplama): Taraf devletler, sözleşmedeki politikaları planlamak ve yürütmek için gerekli istatistiksel ve araştırma verilerini toplamakla yükümlüdür.",
+      "Veri Toplamada 3 Temel İlke: 1) Mahremiyet ve gizlilik haklarına tam saygı, 2) İnsan hakları ve etik standartlara uygunluk, 3) Toplanan istatistiklerin kamuya açık ve erişilebilir formatlarda yayınlanması.",
+      "Washington Grubu Soru Seti: Dünya genelinde engellilik verilerinin karşılaştırılabilir toplanması için geliştirilen işlevsel soru setidir (Türkiye 2011 araştırmasında kullanılmıştır).",
+      "Madde 32 (Uluslararası İşbirliği): Uluslararası kalkınma programlarının (BM Sürdürülebilir Kalkınma Amaçları) engellileri kapsaması, teknik ve finansal kapasite paylaşımıdır."
+    ],
+    practicalTip: "Soruda 'CRPD Madde 31'in konusu nedir?' derse: İstatistik ve Veri Toplama! 'Madde 32' derse: Uluslararası İşbirliği!",
+    examClue: "Veri toplanırken bireylerin kişisel sağlık verilerinin korunması (GDPR/KVKK) ve ayrıştırılmış veri (cinsiyet, yaş, engel türü kırılımında) sunulması zorunludur.",
+    keepInMind: "Madde 31 = İstatistik ve Veri Toplama (Washington Grubu) | Madde 32 = Uluslararası İşbirliği ve Kalkınma Desteği.",
+    aiPromptSuggestion: "CRPD Madde 31 Veri Toplama hakkının neden sosyal politika için hayati olduğunu açıklar mısın?",
+    visualSchema: {
+      title: "Görsel Şema · CRPD Madde 31 ve Madde 32",
+      items: [
+        { icon: "📊", label: "Madde 31: Veri Toplama", highlight: "Sayılmayan Yok Sayılır!", detail: "Okullaşma, istihdam ve yoksulluk verilerinin cinsiyet ve yaş kırılımında toplanması", color: "blue" },
+        { icon: "🔒", label: "Mahremiyet Kalkanı", highlight: "Kişisel Veri Koruma", detail: "İstatistik toplanırken bireyin tıbbi ve kişisel mahremiyetine tam saygı", color: "amber" },
+        { icon: "🌍", label: "Madde 32: İşbirliği", highlight: "Uluslararası Destek", detail: "Ülkeler arası teknoloji, kaynak ve engelsiz kalkınma fonu transferi", color: "emerald" }
+      ]
+    }
+  },
+  {
+    id: "u3-t20",
+    unitId: "unit-3",
+    title: "Hak Arama Yolları: TİHEK, KDK (Ombudsman) ve İdare Mahkemeleri",
+    subtitle: "Türkiye'de ayrımcılığa uğrayan bir engelli nereye, nasıl başvurabilir?",
+    eli5: "Bir engelli vatandaş okuldan veya işten kovulursa ya da otobüse alınmazsa hakkını nasıl arar? 1) TİHEK (Türkiye İnsan Hakları ve Eşitlik Kurumu): Ayrımcılık yapan şirkete veya kamuya doğrudan para cezası keser. 2) KDK (Kamu Denetçiliği Kurumu / Ombudsman): Belediyenin veya bakanlığın haksız uygulamalarını inceler ve düzeltilmesini tavsiye eder. 3) İdare Mahkemesi ve Anayasa Mahkemesi (AYM): İptal ve tazminat davası açılır. Hepsi biterse AİHM veya BM Komitesi'ne gidilir!",
+    bulletPoints: [
+      "1. TİHEK (Türkiye İnsan Hakları ve Eşitlik Kurumu - 6701 Sayılı Kanun): Engellilik temelli doğrudan/dolaylı ayrımcılık ve makul düzenleme reddi başvurularını inceler; ayrımcılık tespit ederse ilgililere İDARİ PARA CEZASI keser.",
+      "2. KDK (Kamu Denetçiliği Kurumu / Ombudsman): Kamu kurumlarının engellilere yönelik işlem ve eylemlerindeki adaletsizlikleri, kötü yönetimi inceler; dostane çözüm arar ve kurumlara 'Tavsiye Kararı' gönderir.",
+      "3. İdari Yargı (İdare ve Vergi Mahkemeleri): İptal davası ve tam yargı (tazminat) davaları açılır.",
+      "4. Anayasa Mahkemesi (AYM) Bireysel Başvuru: Temel hakların ihlalinde derece mahkemeleri tüketildikten sonra gidilen en üst ulusal yargı yoludur.",
+      "5. Uluslararası Başvuru: İç hukuk yolları tükendiğinde AİHM (Avrupa İnsan Hakları Mahkemesi) veya BM CRPD İhtiyari Protokolü kapsamında BM Engelli Hakları Komitesi."
+    ],
+    practicalTip: "Ayrımcılık şikayetlerinde: 'Ayrımcılık yasağı incelemesi yapıp idari para cezası kesebilen kurum' = TİHEK (6701 sayılı Kanun)! 'Kamu kurumlarına karşı vatandaşın avukatlığını yapan ve tavsiye kararı veren' = KAMU DENETÇİLİĞİ KURUMU (Ombudsman)!",
+    examClue: "TİHEK'e başvuru harçtan muaftır ve ayrımcılık davalarında 'ispat yükü' yer değiştirir (mağdur ayrımcılık karinesi gösterirse, ayrımcılık yapmadığını ispatlama yükü karşı tarafa geçer).",
+    keepInMind: "Ayrımcılıkta Para Cezası = TİHEK (6701) | Kamu Şikayeti = KDK (Ombudsman) | Ulusal Yargı = İdare & AYM | Uluslararası = BM Komitesi & AİHM.",
+    aiPromptSuggestion: "Türkiye'de engelliliğe dayalı ayrımcılığa uğrayan bir bireyin başvurabileceği resmi hak arama yollarını (TİHEK, KDK, Yargı) özetler misin?",
+    visualSchema: {
+      title: "Görsel Başvuru Yolu · Hak Arama ve Ayrımcılıkla Mücadele",
+      items: [
+        { icon: "⚖️", label: "TİHEK (6701)", highlight: "İdari Para Cezası", detail: "Ayrımcılık ve makul düzenleme reddi başvurularında yaptırım yetkili kurum", color: "blue" },
+        { icon: "🏛️", label: "KDK (Ombudsman)", highlight: "Kamu Denetçiliği", detail: "Belediye ve bakanlıkların engellilere yönelik haksız uygulamalarına tavsiye kararı", color: "amber" },
+        { icon: "🌐", label: "AYM & BM Komitesi", highlight: "Bireysel Başvuru", detail: "İç hukuk yolları ve Anayasa Mahkemesi sonrası uluslararası denetim", color: "emerald" }
+      ]
+    }
+  }
+];
+

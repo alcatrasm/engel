@@ -49,12 +49,21 @@ test("FULL_QUESTION_BANK has 250+ valid exam questions across all 4 units", () =
   assert.equal(picked20.length, 20);
 });
 
-test("filterTopics filters by unit and search keyword across 60 topic cards", () => {
+test("filterTopics filters by unit and search keyword across 80 topic cards", () => {
   const unit1Topics = filterTopics("unit-1", "");
-  assert.equal(unit1Topics.length, 15);
+  assert.equal(unit1Topics.length, 20);
+
+  const unit2Topics = filterTopics("unit-2", "");
+  assert.equal(unit2Topics.length, 20);
+
+  const unit3Topics = filterTopics("unit-3", "");
+  assert.equal(unit3Topics.length, 20);
+
+  const unit4Topics = filterTopics("unit-4", "");
+  assert.equal(unit4Topics.length, 20);
 
   const allTopics = filterTopics("all", "");
-  assert.equal(allTopics.length, 60);
+  assert.equal(allTopics.length, 80);
 
   const goffmanSearch = filterTopics("all", "Goffman");
   assert.ok(goffmanSearch.length >= 2);
@@ -78,9 +87,9 @@ test("calculateQuizScore computes accurate score and percentage", () => {
   assert.equal(result.percentage, 67);
 });
 
-test("calculateStudyProgress computes topic completion percentage across 60 cards", () => {
-  const progress = calculateStudyProgress(["u1-t1", "u1-t2", "u1-t3"]);
-  assert.equal(progress.completed, 3);
-  assert.equal(progress.total, 60);
+test("calculateStudyProgress computes topic completion percentage across 80 cards", () => {
+  const progress = calculateStudyProgress(["u1-t1", "u1-t2", "u1-t3", "u1-t4"]);
+  assert.equal(progress.completed, 4);
+  assert.equal(progress.total, 80);
   assert.equal(progress.percent, 5);
 });
