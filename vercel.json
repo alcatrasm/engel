@@ -4,13 +4,8 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/api/gemini",
-      "destination": "/api/gemini"
-    },
-    {
-      "source": "/((?!api/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
 }
-

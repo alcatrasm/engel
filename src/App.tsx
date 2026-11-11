@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { StudyView } from "./components/StudyView";
 import { QuizView } from "./components/QuizView";
-import { AiTutorView } from "./components/AiTutorView";
+import { ExamGuideView } from "./components/ExamGuideView";
 import { SyllabusView } from "./components/SyllabusView";
 import { calculateStudyProgress } from "./utils/studyLogic";
-import { BookOpen, CheckSquare, Sparkles, Calendar } from "lucide-react";
+import { BookOpen, CheckSquare, Zap, Calendar } from "lucide-react";
 
-type ActiveTab = "study" | "quiz" | "ai" | "syllabus";
+type ActiveTab = "study" | "quiz" | "guide" | "syllabus";
 
 const STORAGE_KEY_COMPLETED = "shz237_completed_topics_v1";
 
@@ -23,12 +23,6 @@ export default function App() {
     }
   });
 
-  const [aiQueuedPrompt, setAiQueuedPrompt] = useState<string | undefined>(undefined);
-  const [aiQueuedContext, setAiQueuedContext] = useState<string | undefined>(undefined);
-  const [aiQueuedMode, setAiQueuedMode] = useState<
-    "explain_simple" | "generate_question" | "free_chat" | "case_analysis"
-  >("explain_simple");
-
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY_COMPLETED, JSON.stringify(completedTopicIds));
@@ -41,17 +35,6 @@ export default function App() {
     setCompletedTopicIds((prev) =>
       prev.includes(topicId) ? prev.filter((id) => id !== topicId) : [...prev, topicId]
     );
-  };
-
-  const handleAskAi = (
-    prompt: string,
-    contextTitle: string,
-    mode: "explain_simple" | "generate_question"
-  ) => {
-    setAiQueuedPrompt(prompt);
-    setAiQueuedContext(contextTitle);
-    setAiQueuedMode(mode);
-    setActiveTab("ai");
   };
 
   const handleStartUnitQuiz = (unitId: string) => {
@@ -96,7 +79,7 @@ export default function App() {
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              Konu Kartları
+              Konu Kartları (80)
             </button>
             <button
               onClick={() => setActiveTab("quiz")}
@@ -106,17 +89,17 @@ export default function App() {
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              Test Çöz
+              Test Çöz (340)
             </button>
             <button
-              onClick={() => setActiveTab("ai")}
+              onClick={() => setActiveTab("guide")}
               className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
-                activeTab === "ai"
+                activeTab === "guide"
                   ? "bg-white text-blue-600 shadow-2xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              AI Hoca
+              Sınav Şifreleri
             </button>
             <button
               onClick={() => setActiveTab("syllabus")}
@@ -145,7 +128,6 @@ export default function App() {
             onSelectUnit={setSelectedUnitId}
             completedTopicIds={completedTopicIds}
             onToggleComplete={handleToggleComplete}
-            onAskAi={handleAskAi}
             onStartUnitQuiz={handleStartUnitQuiz}
           />
         )}
@@ -154,12 +136,10 @@ export default function App() {
           <QuizView initialUnitId={quizUnitId} />
         )}
 
-        {activeTab === "ai" && (
-          <AiTutorView
-            initialPrompt={aiQueuedPrompt}
-            initialContext={aiQueuedContext}
-            initialMode={aiQueuedMode}
-            onClearInitialPrompt={() => setAiQueuedPrompt(undefined)}
+        {activeTab === "guide" && (
+          <ExamGuideView
+            onOpenUnit={handleOpenUnitFromSyllabus}
+            onStartUnitQuiz={handleStartUnitQuiz}
           />
         )}
 
@@ -194,13 +174,13 @@ export default function App() {
         </button>
 
         <button
-          onClick={() => setActiveTab("ai")}
+          onClick={() => setActiveTab("guide")}
           className={`min-h-[48px] flex flex-col items-center justify-center rounded-xl transition-colors cursor-pointer ${
-            activeTab === "ai" ? "text-blue-600 font-bold" : "text-slate-500"
+            activeTab === "guide" ? "text-blue-600 font-bold" : "text-slate-500"
           }`}
         >
-          <Sparkles className="w-5 h-5" />
-          <span className="text-[11px] mt-0.5 whitespace-nowrap">AI Hoca</span>
+          <Zap className="w-5 h-5" />
+          <span className="text-[11px] mt-0.5 whitespace-nowrap">Sınav Şifresi</span>
         </button>
 
         <button

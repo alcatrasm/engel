@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { COURSE_UNITS } from "../data/courseData";
 import {
   FULL_QUESTION_BANK,
   filterTopics,
@@ -8,33 +9,17 @@ import {
   calculateQuizScore,
   calculateStudyProgress
 } from "./studyLogic";
-import { FALLBACK_API_KEYS, parseConcatenatedApiKeys, getCandidateApiKeys } from "../lib/geminiRotation";
+import {
+  getWrongOptionReason,
+  getAllOptionsAnalysis,
+  getTopicDailyExample,
+  getQuestionsForTopic
+} from "./optionExplanations";
 
-test("FALLBACK_API_KEYS has all 21 user-provided keys in exact order", () => {
-  assert.equal(FALLBACK_API_KEYS.length, 21);
-  assert.equal(FALLBACK_API_KEYS[0], "AIzaSyAaGCgVqISrQc7EzF8cZOBXQsQRrgfREK0");
-  assert.equal(FALLBACK_API_KEYS[20], "AIzaSyDm0braU7aFyip-VQBVfCQfv-n9fkxdmRg");
-});
-
-test("parseConcatenatedApiKeys splits concatenated AIza keys accurately", () => {
-  const raw =
-    "AIzaSyAaGCgVqISrQc7EzF8cZOBXQsQRrgfREK0AIzaSyDGwt3_N1vu0uArQaADqN8nSR4xKJQYdg0";
-  const parsed = parseConcatenatedApiKeys(raw);
-  assert.deepEqual(parsed, [
-    "AIzaSyAaGCgVqISrQc7EzF8cZOBXQsQRrgfREK0",
-    "AIzaSyDGwt3_N1vu0uArQaADqN8nSR4xKJQYdg0"
-  ]);
-});
-
-test("getCandidateApiKeys preserves order and ignores placeholder env key", () => {
-  const keys = getCandidateApiKeys("MY_GEMINI_API_KEY");
-  assert.equal(keys.length, 21);
-});
-
-test("FULL_QUESTION_BANK has 250+ valid exam questions across all 4 units", () => {
+test("FULL_QUESTION_BANK has 340 valid exam questions across all 4 units", () => {
   assert.ok(
-    FULL_QUESTION_BANK.length >= 250,
-    `Expected at least 250 questions, got ${FULL_QUESTION_BANK.length}`
+    FULL_QUESTION_BANK.length >= 300,
+    `Expected at least 300 questions, got ${FULL_QUESTION_BANK.length}`
   );
 
   for (const q of FULL_QUESTION_BANK) {
@@ -47,6 +32,41 @@ test("FULL_QUESTION_BANK has 250+ valid exam questions across all 4 units", () =
 
   const picked20 = pickRandomQuestions(FULL_QUESTION_BANK, 20);
   assert.equal(picked20.length, 20);
+});
+
+test("Every wrong option in FULL_QUESTION_BANK produces a clear, non-empty explanation of why it is wrong", () => {
+  for (const q of FULL_QUESTION_BANK) {
+    const analysis = getAllOptionsAnalysis(q);
+    assert.equal(analysis.length, 4);
+
+    for (let idx = 0; idx < 4; idx++) {
+      if (idx === q.correctIndex) {
+        assert.equal(analysis[idx].isCorrect, true);
+        assert.ok(analysis[idx].explanation.length > 15);
+      } else {
+        assert.equal(analysis[idx].isCorrect, false);
+        const wrongReason = getWrongOptionReason(q, idx);
+        assert.ok(wrongReason.length > 20);
+        // Should mention the selected wrong option text or explain why it doesn't fit
+        assert.ok(wrongReason.includes(q.options[q.correctIndex]));
+      }
+    }
+  }
+});
+
+test("Every one of the 80 Topic Cards has a daily life case example and matched exam questions", () => {
+  const allTopics = COURSE_UNITS.flatMap((u) => u.topics);
+  assert.equal(allTopics.length, 80);
+
+  for (const topic of allTopics) {
+    const example = getTopicDailyExample(topic);
+    assert.ok(example.title.includes(topic.title));
+    assert.ok(example.scenario.length > 30);
+    assert.ok(example.socialWorkAction.length > 20);
+
+    const matched = getQuestionsForTopic(topic, FULL_QUESTION_BANK);
+    assert.ok(matched.length >= 1);
+  }
 });
 
 test("filterTopics filters by unit and search keyword across 80 topic cards", () => {

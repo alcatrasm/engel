@@ -1,6 +1,6 @@
 {
   "name": "SHZ237 Kolay Çalış",
-  "description": "Engellilerle Sosyal Hizmet dersi için sade, anlaşılır, mobil uyumlu online ders çalışma, test ve yapay zeka destekli öğrenme platformu.",
+  "description": "Engellilerle Sosyal Hizmet dersi için sade, anlaşılır, mobil uyumlu online ders çalışma, 80 görsel konu kartı, 340 çözümlü soru ve sınav şifreleri platformu.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

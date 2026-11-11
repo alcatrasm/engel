@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { COURSE_UNITS, TopicCard } from "../data/courseData";
 import { TopicVisualDiagram } from "./TopicVisualDiagram";
-import { askGeminiTutorClient } from "../lib/geminiRotation";
+import { FULL_QUESTION_BANK } from "../utils/studyLogic";
+import {
+  getTopicDailyExample,
+  getQuestionsForTopic,
+  getWrongOptionReason
+} from "../utils/optionExplanations";
 import {
   CheckCircle2,
   Circle,
-  Sparkles,
   BookOpen,
   Lightbulb,
   Pin,
@@ -14,7 +18,10 @@ import {
   ChevronDown,
   ChevronUp,
   FileText,
-  ListFilter
+  ListFilter,
+  HelpCircle,
+  XCircle,
+  Briefcase
 } from "lucide-react";
 
 interface StudyViewProps {
@@ -22,11 +29,6 @@ interface StudyViewProps {
   onSelectUnit: (unitId: string) => void;
   completedTopicIds: string[];
   onToggleComplete: (topicId: string) => void;
-  onAskAi: (
-    prompt: string,
-    contextTitle: string,
-    mode: "explain_simple" | "generate_question"
-  ) => void;
   onStartUnitQuiz: (unitId: string) => void;
 }
 
@@ -45,17 +47,17 @@ export const StudyView: React.FC<StudyViewProps> = ({
   const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
   const [showAllSlides, setShowAllSlides] = useState(false);
   const [showTopicList, setShowTopicList] = useState(false);
-
-  const [inlineAiLoading, setInlineAiLoading] = useState(false);
-  const [inlineAiResponse, setInlineAiResponse] = useState<string | null>(null);
-  const [inlineAiError, setInlineAiError] = useState<string | null>(null);
+  const [showDailyExample, setShowDailyExample] = useState(false);
+  const [showMiniQuiz, setShowMiniQuiz] = useState(false);
+  const [miniQuizAnswer, setMiniQuizAnswer] = useState<number | null>(null);
 
   useEffect(() => {
     setCurrentTopicIndex(0);
     setShowAllSlides(false);
     setShowTopicList(false);
-    setInlineAiResponse(null);
-    setInlineAiError(null);
+    setShowDailyExample(false);
+    setShowMiniQuiz(false);
+    setMiniQuizAnswer(null);
   }, [effectiveUnitId]);
 
   const topics = activeUnit.topics;
@@ -63,12 +65,24 @@ export const StudyView: React.FC<StudyViewProps> = ({
   const currentTopic: TopicCard = topics[safeIndex];
   const isCompleted = completedTopicIds.includes(currentTopic.id);
 
+  const dailyExample = useMemo(
+    () => getTopicDailyExample(currentTopic),
+    [currentTopic]
+  );
+
+  const matchedQuestions = useMemo(
+    () => getQuestionsForTopic(currentTopic, FULL_QUESTION_BANK),
+    [currentTopic]
+  );
+  const miniQuestion = matchedQuestions[0];
+
   const handleSelectTopicIndex = (idx: number) => {
     setCurrentTopicIndex(idx);
     setShowAllSlides(false);
     setShowTopicList(false);
-    setInlineAiResponse(null);
-    setInlineAiError(null);
+    setShowDailyExample(false);
+    setShowMiniQuiz(false);
+    setMiniQuizAnswer(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -101,49 +115,11 @@ export const StudyView: React.FC<StudyViewProps> = ({
     handleNextTopic();
   };
 
-  const askInlineAi = async (
-    promptText: string,
-    mode: "explain_simple" | "generate_question"
-  ) => {
-    if (inlineAiLoading) return;
-    setInlineAiLoading(true);
-    setInlineAiError(null);
-    setInlineAiResponse(null);
-
-    try {
-      const data = await askGeminiTutorClient({
-        prompt: promptText,
-        context: currentTopic.title,
-        mode
-      });
-      setInlineAiResponse(data.text || "Yanıt alındı.");
-    } catch (err: unknown) {
-      setInlineAiError(
-        err instanceof Error ? err.message : "Bağlantı hatası oluştu."
-      );
-    } finally {
-      setInlineAiLoading(false);
-    }
-  };
-
-  const renderBoldText = (text: string) => {
-    const cleaned = text.replace(/^#{1,4}\s*/gm, "");
-    const parts = cleaned.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, i) => {
-      if (part.startsWith("**") && part.endsWith("**")) {
-        return (
-          <strong key={i} className="font-bold text-indigo-950">
-            {part.slice(2, -2)}
-          </strong>
-        );
-      }
-      return <React.Fragment key={i}>{part}</React.Fragment>;
-    });
-  };
+  const letters = ["A", "B", "C", "D"];
 
   return (
     <div className="max-w-3xl mx-auto space-y-4">
-      {/* 1. Simple 4-Unit Selector (60 total cards: 15 per unit) */}
+      {/* 1. Simple 4-Unit Selector (80 total cards: 20 per unit) */}
       <div
         role="tablist"
         aria-label="Ünite Seçimi"
@@ -181,7 +157,7 @@ export const StudyView: React.FC<StudyViewProps> = ({
         })}
       </div>
 
-      {/* 2. Topic Step Bar (1..15) + Expandable Topic Index Drawer */}
+      {/* 2. Topic Step Bar (1..20) + Expandable Topic Index Drawer */}
       <div className="bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 space-y-2.5">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
@@ -230,7 +206,7 @@ export const StudyView: React.FC<StudyViewProps> = ({
           </div>
         </div>
 
-        {/* Collapsible Quick Jump List of all 15 Topic Titles in Active Unit */}
+        {/* Collapsible Quick Jump List of all 20 Topic Titles in Active Unit */}
         {showTopicList && (
           <div className="border-t border-slate-100 pt-2.5 grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-72 overflow-y-auto">
             {topics.map((t, idx) => {
@@ -317,7 +293,7 @@ export const StudyView: React.FC<StudyViewProps> = ({
         <div className="bg-blue-50/80 border border-blue-200 rounded-2xl p-4 sm:p-5">
           <div className="flex items-center gap-2 text-xs font-bold text-blue-900 mb-1.5">
             <BookOpen className="w-4 h-4 text-blue-700 shrink-0" />
-            <span>Hiç Bilmeyene Basit Anlatım</span>
+            <span>En Sade ve Anlaşılır Özeti</span>
           </div>
           <p className="text-sm sm:text-base text-slate-800 leading-relaxed">
             {currentTopic.eli5}
@@ -352,12 +328,12 @@ export const StudyView: React.FC<StudyViewProps> = ({
           </div>
         </div>
 
-        {/* Optional Slide Bullet Notes + Instant Inline AI Buttons */}
+        {/* Built-In Interactive Reinforcement Tools: Slide Details, Daily Case Example, and Topic Mini-Question */}
         <div className="pt-2 border-t border-slate-100 space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <button
               onClick={() => setShowAllSlides(!showAllSlides)}
-              className="min-h-[38px] px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[38px] px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               {showAllSlides ? (
                 <>
@@ -374,28 +350,34 @@ export const StudyView: React.FC<StudyViewProps> = ({
 
             <div className="flex flex-wrap items-center gap-2">
               <button
-                onClick={() =>
-                  askInlineAi(currentTopic.aiPromptSuggestion, "explain_simple")
-                }
-                disabled={inlineAiLoading}
-                className="min-h-[38px] px-3.5 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer disabled:opacity-50"
+                onClick={() => setShowDailyExample(!showDailyExample)}
+                className={`min-h-[38px] px-3.5 py-1.5 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer border ${
+                  showDailyExample
+                    ? "bg-indigo-600 text-white border-indigo-600"
+                    : "text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border-indigo-200"
+                }`}
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Günlük Örnekle Anlat (AI)</span>
+                <Briefcase className="w-3.5 h-3.5" />
+                <span>
+                  {showDailyExample ? "Vaka Örneğini Gizle" : "Günlük Hayat & Vaka Örneği"}
+                </span>
               </button>
 
-              <button
-                onClick={() =>
-                  askInlineAi(
-                    `"${currentTopic.title}" konusuyla ilgili sınavda çıkabilecek 1 adet çoktan seçmeli soru ve çok basit açıklamasını yaz.`,
-                    "generate_question"
-                  )
-                }
-                disabled={inlineAiLoading}
-                className="min-h-[38px] px-3.5 py-1.5 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl transition-colors cursor-pointer disabled:opacity-50"
-              >
-                <span>Örnek Soru Üret (AI)</span>
-              </button>
+              {miniQuestion && (
+                <button
+                  onClick={() => setShowMiniQuiz(!showMiniQuiz)}
+                  className={`min-h-[38px] px-3.5 py-1.5 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer border ${
+                    showMiniQuiz
+                      ? "bg-emerald-600 text-white border-emerald-600"
+                      : "text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border-emerald-200"
+                  }`}
+                >
+                  <HelpCircle className="w-3.5 h-3.5" />
+                  <span>
+                    {showMiniQuiz ? "Örnek Soruyu Gizle" : "Bu Konunun Sınav Sorusu"}
+                  </span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -410,37 +392,106 @@ export const StudyView: React.FC<StudyViewProps> = ({
             </ul>
           )}
 
-          {/* Inline AI Output Right Inside the Card */}
-          {inlineAiLoading && (
-            <div className="bg-blue-50/50 border border-blue-200 rounded-xl p-4 text-xs sm:text-sm text-blue-900 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-blue-600 animate-spin shrink-0" />
-              <span>Yapay Zeka Hoca en basit örneği hazırlıyor...</span>
+          {/* Built-in Daily Life & Social Work Case Example */}
+          {showDailyExample && (
+            <div className="bg-indigo-50/80 border border-indigo-200 rounded-2xl p-4 sm:p-5 space-y-2.5">
+              <div className="text-xs font-bold text-indigo-950 flex items-center gap-2">
+                <Briefcase className="w-4 h-4 text-indigo-700 shrink-0" />
+                <span>{dailyExample.title}</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-800 leading-relaxed">
+                <strong>Somut Durum:</strong> {dailyExample.scenario}
+              </p>
+              <p className="text-xs sm:text-sm text-indigo-950 leading-relaxed bg-white/80 border border-indigo-100 rounded-xl p-3">
+                <strong>Sosyal Hizmet Uzmanı Ne Yapar?</strong> {dailyExample.socialWorkAction}
+              </p>
             </div>
           )}
 
-          {inlineAiError && (
-            <div className="bg-rose-50 border border-rose-200 rounded-xl p-3.5 text-xs text-rose-800">
-              {inlineAiError}
-            </div>
-          )}
-
-          {inlineAiResponse && (
-            <div className="bg-indigo-50/80 border-2 border-indigo-200 text-slate-800 rounded-2xl p-4 sm:p-5 space-y-2">
-              <div className="flex items-center justify-between border-b border-indigo-200/70 pb-2">
-                <span className="text-xs font-bold text-indigo-900 flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4 text-indigo-600" />
-                  <span>Yapay Zeka Hoca'nın Basit Anlatımı</span>
+          {/* Built-in Topic Mini-Question with Wrong/Right Option Explanation */}
+          {showMiniQuiz && miniQuestion && (
+            <div className="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 sm:p-5 space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-lg">
+                  Konu Pekiştirme Sorusu
                 </span>
-                <button
-                  onClick={() => setInlineAiResponse(null)}
-                  className="text-xs font-semibold text-indigo-700 hover:text-indigo-950 cursor-pointer"
-                >
-                  Kapat ✕
-                </button>
+                {miniQuizAnswer !== null && (
+                  <button
+                    onClick={() => setMiniQuizAnswer(null)}
+                    className="text-xs font-semibold text-slate-500 hover:text-slate-800 cursor-pointer"
+                  >
+                    Tekrar Çöz
+                  </button>
+                )}
               </div>
-              <div className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap text-slate-800">
-                {renderBoldText(inlineAiResponse)}
+
+              <p className="text-sm sm:text-base font-bold text-slate-900">
+                {miniQuestion.question}
+              </p>
+
+              <div className="grid grid-cols-1 gap-2">
+                {miniQuestion.options.map((opt, idx) => {
+                  const isAnswered = miniQuizAnswer !== null;
+                  const isSelected = miniQuizAnswer === idx;
+                  const isRight = miniQuestion.correctIndex === idx;
+
+                  let btnClass =
+                    "bg-white hover:bg-slate-100 border-slate-200 text-slate-800";
+                  if (isAnswered) {
+                    if (isRight) {
+                      btnClass =
+                        "bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold";
+                    } else if (isSelected && !isRight) {
+                      btnClass = "bg-rose-50 border-rose-400 text-rose-950";
+                    } else {
+                      btnClass = "bg-white border-slate-200 text-slate-400 opacity-75";
+                    }
+                  }
+
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setMiniQuizAnswer(idx)}
+                      className={`w-full px-3.5 py-2.5 text-left text-xs sm:text-sm rounded-xl border-2 transition-colors flex items-center justify-between gap-2 cursor-pointer ${btnClass}`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className="font-mono font-bold text-xs w-6 h-6 rounded-md bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 text-slate-700">
+                          {letters[idx]}
+                        </span>
+                        <span>{opt}</span>
+                      </div>
+                      {isAnswered && isRight && (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      )}
+                      {isAnswered && isSelected && !isRight && (
+                        <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
+
+              {miniQuizAnswer !== null && (
+                <div className="space-y-2 pt-2">
+                  {miniQuizAnswer !== miniQuestion.correctIndex && (
+                    <div className="bg-rose-50 border border-rose-200 rounded-xl p-3 text-xs text-rose-950 space-y-1">
+                      <div className="font-bold text-rose-900">
+                        ✕ Seçtiğin Şık ({letters[miniQuizAnswer]}: {miniQuestion.options[miniQuizAnswer]}) Neden Yanlış?
+                      </div>
+                      <p className="leading-relaxed">
+                        {getWrongOptionReason(miniQuestion, miniQuizAnswer)}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-950 space-y-1">
+                    <div className="font-bold text-emerald-900">
+                      ✓ Doğru Cevap ({letters[miniQuestion.correctIndex]}: {miniQuestion.options[miniQuestion.correctIndex]}) Neden Doğru?
+                    </div>
+                    <p className="leading-relaxed">{miniQuestion.simpleExplanation}</p>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
