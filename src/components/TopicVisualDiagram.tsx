@@ -1,11 +1,90 @@
 import React from "react";
-import { ArrowRight, CheckCircle2, AlertTriangle } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { TopicVisualSchema } from "../data/courseData";
 
 interface TopicVisualDiagramProps {
   topicId: string;
+  visualSchema?: TopicVisualSchema;
+  keepInMind?: string;
 }
 
-export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId }) => {
+const COLOR_STYLES: Record<
+  "blue" | "emerald" | "amber" | "purple" | "rose",
+  { border: string; badgeBg: string; badgeText: string; highlightText: string }
+> = {
+  blue: {
+    border: "border-blue-200",
+    badgeBg: "bg-blue-100",
+    badgeText: "text-blue-700",
+    highlightText: "text-blue-700"
+  },
+  emerald: {
+    border: "border-emerald-200",
+    badgeBg: "bg-emerald-100",
+    badgeText: "text-emerald-700",
+    highlightText: "text-emerald-700"
+  },
+  amber: {
+    border: "border-amber-200",
+    badgeBg: "bg-amber-100",
+    badgeText: "text-amber-700",
+    highlightText: "text-amber-700"
+  },
+  purple: {
+    border: "border-purple-200",
+    badgeBg: "bg-purple-100",
+    badgeText: "text-purple-700",
+    highlightText: "text-purple-700"
+  },
+  rose: {
+    border: "border-rose-200",
+    badgeBg: "bg-rose-100",
+    badgeText: "text-rose-700",
+    highlightText: "text-rose-700"
+  }
+};
+
+export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({
+  topicId,
+  visualSchema,
+  keepInMind
+}) => {
+  // 1. If the topic card has a structured visualSchema, render its 3-card infographic
+  if (visualSchema && visualSchema.items.length > 0) {
+    return (
+      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
+        <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
+          {visualSchema.title}
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+          {visualSchema.items.map((item, idx) => {
+            const style = COLOR_STYLES[item.color] || COLOR_STYLES.blue;
+            return (
+              <div
+                key={idx}
+                className={`bg-white border-2 ${style.border} rounded-xl p-3.5 shadow-2xs`}
+              >
+                <div
+                  className={`w-11 h-11 mx-auto rounded-2xl ${style.badgeBg} ${style.badgeText} flex items-center justify-center text-xl mb-2`}
+                >
+                  {item.icon}
+                </div>
+                <div className="font-bold text-sm text-slate-900">{item.label}</div>
+                <div className={`text-xs font-bold ${style.highlightText} mt-0.5`}>
+                  {item.highlight}
+                </div>
+                <div className="text-xs text-slate-600 mt-1 leading-relaxed">
+                  {item.detail}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // 2. Custom bespoke diagrams for specific topics
   switch (topicId) {
     // u1-t1: Engelli ve Engellilik Tanımları (DMK, 2828, Hizmet Yasası)
     case "u1-t1":
@@ -104,46 +183,8 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
         </div>
       );
 
-    // u1-t3: Engellilik Türleri 1: Otizm, İşitme ve Görme Engeli
-    case "u1-t3":
-      return (
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel Sayı Şifreleri · Otizm, İşitme ve Görme
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-            <div className="bg-white border-2 border-purple-200 rounded-xl p-3.5">
-              <div className="text-2xl mb-1">🧩</div>
-              <div className="font-bold text-sm text-slate-900">Otizm (OSB)</div>
-              <div className="text-xs font-bold text-purple-700 mt-0.5">3 Yaş Öncesi · 6 Belirti</div>
-              <div className="text-xs text-slate-600 mt-1">
-                Sosyal etkileşim, iletişim ve tekrarlayıcı davranışlarda <strong>en az 6 belirti</strong>.
-              </div>
-            </div>
-
-            <div className="bg-white border-2 border-amber-200 rounded-xl p-3.5">
-              <div className="text-2xl mb-1">👂</div>
-              <div className="font-bold text-sm text-slate-900">Sağırlık vs Ağır İşitme</div>
-              <div className="text-xs font-bold text-amber-700 mt-0.5">Cihaz İşe Yarıyor mu?</div>
-              <div className="text-xs text-slate-600 mt-1">
-                Cihazla bile konuşmayı hiç duyamıyorsa <strong>Sağırlık</strong>; kısmen duyuyorsa <strong>Ağır İşitme</strong>.
-              </div>
-            </div>
-
-            <div className="bg-white border-2 border-blue-200 rounded-xl p-3.5">
-              <div className="text-2xl mb-1">👁️</div>
-              <div className="font-bold text-sm text-slate-900">Yasal Körlük</div>
-              <div className="text-xs font-bold text-blue-700 mt-0.5">6 Metre → 60 cm</div>
-              <div className="text-xs text-slate-600 mt-1">
-                Normal gözün <strong>6 metreden</strong> gördüğünü <strong>60 cm'den</strong> görememe (veya &lt;20° açı).
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-
-    // u1-t4: Engellilik Türleri 2: Zihinsel, Çoklu, Fiziksel ve Öğrenme Güçlüğü
-    case "u1-t4":
+    // u1-t5: Zihinsel Engellilik (16 Yaş), Çoklu Yetersizlik ve Öğrenme Güçlüğü
+    case "u1-t5":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
@@ -161,7 +202,7 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
               <div className="text-xl mb-1">🔗</div>
               <div className="font-bold text-xs text-slate-900">Çoklu Yetersizlik</div>
               <div className="text-[11px] text-slate-600 mt-1">
-                Birden fazla ağır engel (Örn: Zihinsel + Görme). <em>Kör-sağırlık hariç!</em>
+                Ağır zihinsel + en az 1 ek engel. <em>Kör-sağırlık hariç!</em>
               </div>
             </div>
             <div className="bg-white border-2 border-emerald-200 rounded-xl p-3">
@@ -176,62 +217,27 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
               <div className="text-xl mb-1">📖</div>
               <div className="font-bold text-xs text-slate-900">Öğrenme Güçlüğü</div>
               <div className="text-[11px] text-slate-600 mt-1">
-                <strong>Zeka normaldir!</strong> Disleksi (okuma) ve afazi.
+                <strong>Zeka normaldir!</strong> Disleksi (okuma) ve diskalkuli.
               </div>
             </div>
           </div>
         </div>
       );
 
-    // u1-t5: Engellilik Modelleri: Ahlaki, Medikal, Sosyal ve İnsan Hakları
-    case "u1-t5":
-      return (
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel Karşılaştırma · 4 Model "Sorunu Nerede Görür?"
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            <div className="bg-white border-2 border-slate-200 rounded-xl p-3 text-center">
-              <div className="text-2xl mb-1">⛪</div>
-              <div className="font-bold text-xs text-slate-900">1. Ahlaki Model</div>
-              <div className="text-[11px] text-rose-700 font-semibold mt-1">Sorun: Günah / Kader</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Acıma ve sadaka</div>
-            </div>
-            <div className="bg-white border-2 border-amber-200 rounded-xl p-3 text-center">
-              <div className="text-2xl mb-1">🩺</div>
-              <div className="font-bold text-xs text-slate-900">2. Medikal (Tıbbi)</div>
-              <div className="text-[11px] text-amber-700 font-semibold mt-1">Sorun: Bozuk Beden</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Kişiyi düzeltmeye çalışır</div>
-            </div>
-            <div className="bg-white border-2 border-blue-200 rounded-xl p-3 text-center">
-              <div className="text-2xl mb-1">🏙️</div>
-              <div className="font-bold text-xs text-slate-900">3. Sosyal Model</div>
-              <div className="text-[11px] text-blue-700 font-semibold mt-1">Sorun: Bozuk Çevre</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Rampasız bina ve önyargı</div>
-            </div>
-            <div className="bg-white border-2 border-emerald-300 rounded-xl p-3 text-center">
-              <div className="text-2xl mb-1">⚖️</div>
-              <div className="font-bold text-xs text-slate-900">4. İnsan Hakları</div>
-              <div className="text-[11px] text-emerald-700 font-semibold mt-1">Çözüm: Yasal Hak</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Eşit ve onurlu yurttaş</div>
-            </div>
-          </div>
-        </div>
-      );
-
-    // u2-t1: Sosyal İnşacı Yaklaşım, Etiketleme ve Damgalama (Stigma)
+    // u2-t1 & u2-t3: Sosyal İnşacı Yaklaşım, Etiketleme ve Damgalama (Stigma)
     case "u2-t1":
+    case "u2-t3":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel Zincir · Toplum Nasıl Damgalar? (Goffman)
+            Görsel Zincir · Toplum Nasıl İnşa Eder ve Damgalar? (Goffman)
           </div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
             <div className="flex-1 bg-white border-2 border-slate-200 rounded-xl p-3.5 text-center">
               <div className="text-2xl mb-1">🏗️</div>
               <div className="font-bold text-xs text-slate-900">1. Sosyal İnşa</div>
               <div className="text-xs text-slate-600 mt-1">
-                Toplum kendi kafasına göre <strong>"Normal İnsan"</strong> kalıbı uydurur
+                Toplum ve dil kendi kafasına göre <strong>"Normal İnsan"</strong> kalıbı üretir
               </div>
             </div>
             <div className="flex justify-center text-slate-400">
@@ -239,7 +245,7 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
             </div>
             <div className="flex-1 bg-white border-2 border-amber-200 rounded-xl p-3.5 text-center">
               <div className="text-2xl mb-1">🏷️</div>
-              <div className="font-bold text-xs text-slate-900">2. Etiketleme</div>
+              <div className="font-bold text-xs text-slate-900">2. Etiketleme (Becker)</div>
               <div className="text-xs text-slate-600 mt-1">
                 Kalıba uymayana <strong>"Yetersiz / Eksik"</strong> etiketi yapıştırılır
               </div>
@@ -249,17 +255,17 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
             </div>
             <div className="flex-1 bg-white border-2 border-rose-200 rounded-xl p-3.5 text-center">
               <div className="text-2xl mb-1">💔</div>
-              <div className="font-bold text-xs text-slate-900">3. Damgalama (Stigma)</div>
+              <div className="font-bold text-xs text-slate-900">3. Damgalama (Goffman)</div>
               <div className="text-xs text-slate-600 mt-1">
-                <strong>Erving Goffman:</strong> Kişi utandırılır, dışlanır ve eve kapanır
+                Sosyal itibar zedelenir; kişi <strong>bilgi kontrolü</strong> ile gizlemeye çalışır
               </div>
             </div>
           </div>
         </div>
       );
 
-    // u2-t2: Ekolojik Sistemler Kuramı (Bronfenbrenner)
-    case "u2-t2":
+    // u2-t6: Ekolojik Sistemler Kuramı (Bronfenbrenner)
+    case "u2-t6":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
@@ -275,11 +281,11 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
               </div>
               <div className="bg-emerald-100/90 border-2 border-emerald-300 rounded-xl p-2.5">
                 <div className="text-xs font-bold text-emerald-900 mb-1.5">
-                  🏫 MEZO SİSTEM (Aile ↔ Okul ↔ Hastane İletişimi)
+                  🏫 MEZO SİSTEM (Aile ↔ Okul ↔ Rehabilitasyon İletişimi)
                 </div>
                 <div className="bg-white border-2 border-amber-300 rounded-lg p-2.5 shadow-2xs">
                   <div className="text-xs font-bold text-amber-900">
-                    🎯 MİKRO SİSTEM (Bireyin Kendisi, Ailesi ve Evi)
+                    🎯 MİKRO SİSTEM (Bireyin Kendisi, Ailesi ve Sınıfı)
                   </div>
                 </div>
               </div>
@@ -288,61 +294,66 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
         </div>
       );
 
-    // u2-t3: Feminist Engellilik Kuramı ve Kesişimsellik (Intersectionality)
-    case "u2-t3":
+    // u2-t8: Feminist Engellilik Kuramı
+    case "u2-t8":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel Şema · Feminist Kuram & Kesişimsellik (Crenshaw)
+            Görsel Şema · Feminist Engellilik Kuramı (Garland-Thomson)
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="bg-white border-2 border-purple-200 rounded-xl p-3.5 text-center">
-              <div className="text-2xl mb-1">👩‍👧</div>
-              <div className="font-bold text-sm text-slate-900">Feminist Engellilik Kuramı</div>
-              <div className="text-xs font-bold text-purple-700 mt-0.5">Görünmeyen Bakım Emeği</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+            <div className="bg-white border-2 border-purple-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">👩</div>
+              <div className="font-bold text-sm text-slate-900">Çifte Eşitsizlik</div>
               <div className="text-xs text-slate-600 mt-1">
-                Bakım yükü hep <strong>kadınların (annelerin)</strong> omuzlarına yüklenir; engelli kadınlar ise "cinsiyetsiz" görülür.
+                Hem <strong>toplumsal cinsiyet</strong> hem de <strong>engellilik</strong> nedeniyle çoklu baskı.
               </div>
             </div>
-            <div className="bg-white border-2 border-rose-200 rounded-xl p-3.5 text-center">
-              <div className="text-2xl mb-1">🔀</div>
-              <div className="font-bold text-sm text-slate-900">Kesişimsellik (Crenshaw)</div>
-              <div className="text-xs font-bold text-rose-700 mt-0.5">Katlanan Çoklu Ayrımcılık</div>
+            <div className="bg-white border-2 border-rose-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">🚫</div>
+              <div className="font-bold text-sm text-slate-900">Beden & Temsil</div>
               <div className="text-xs text-slate-600 mt-1">
-                <strong>Engelli + Kadın + Yoksul + Göçmen</strong> kimlikleri birleşince ayrımcılık katlanarak büyür.
+                Engelli kadınların <strong>"cinsiyetsiz / anne olamaz"</strong> görülmesine karşı çıkar.
+              </div>
+            </div>
+            <div className="bg-white border-2 border-emerald-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">✊</div>
+              <div className="font-bold text-sm text-slate-900">Özneleşme</div>
+              <div className="text-xs text-slate-600 mt-1">
+                Yardım nesnesi değil, kendi bedeni ve yaşamı üzerinde söz sahibi kadın.
               </div>
             </div>
           </div>
         </div>
       );
 
-    // u2-t4: Eleştirel Engellilik Çalışmaları, Crip Teorisi ve Bedenleşme
-    case "u2-t4":
+    // u2-t12: Crip Teorisi
+    case "u2-t12":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel 3 Kavram · Sağlamcılık, Crip Teorisi ve Bedenleşme
+            Görsel 3 Kavram · Crip (Sakat) Teorisi (Robert McRuer, 2006)
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+            <div className="bg-white border-2 border-purple-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">🏳️‍🌈</div>
+              <div className="font-bold text-sm text-slate-900">Queer + Engellilik</div>
+              <div className="text-xs text-slate-600 mt-1">
+                Engellilik çalışmaları ile <strong>Queer teorinin</strong> eleştirel birleşimidir.
+              </div>
+            </div>
             <div className="bg-white border-2 border-rose-200 rounded-xl p-3.5">
               <div className="text-2xl mb-1">🚫</div>
-              <div className="font-bold text-sm text-slate-900">Sağlamcılık (Ableism)</div>
+              <div className="font-bold text-sm text-slate-900">Zorunlu Engelsizlik</div>
               <div className="text-xs text-slate-600 mt-1">
-                Sağlam bedeni "üstün", engelli bedeni "kusurlu" sayan ayrımcı ideoloji.
+                Toplumun herkesi <strong>normatif ve sağlam bedene</strong> zorlamasını eleştirir.
               </div>
             </div>
-            <div className="bg-white border-2 border-purple-200 rounded-xl p-3.5">
+            <div className="bg-white border-2 border-emerald-200 rounded-xl p-3.5">
               <div className="text-2xl mb-1">✊</div>
-              <div className="font-bold text-sm text-slate-900">Crip Teorisi (McRuer)</div>
+              <div className="font-bold text-sm text-slate-900">Politik Sahiplenme</div>
               <div className="text-xs text-slate-600 mt-1">
-                <strong>"Normal olmak zorunda değiliz!"</strong> diyerek sağlamcılığa başkaldırı ve engelli gururu.
-              </div>
-            </div>
-            <div className="bg-white border-2 border-blue-200 rounded-xl p-3.5">
-              <div className="text-2xl mb-1">🫀</div>
-              <div className="font-bold text-sm text-slate-900">Bedenleşme (Embodiment)</div>
-              <div className="text-xs text-slate-600 mt-1">
-                Sosyal modelin unuttuğu <strong>fiziksel ağrı, yorgunluk ve beden deneyimini</strong> hatırlar.
+                Argo <strong>"Crip / Sakat"</strong> kelimesini utanç değil politik direniş bayrağı yapar.
               </div>
             </div>
           </div>
@@ -373,137 +384,88 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
               <div className="text-2xl mb-1">⚖️</div>
               <div className="font-bold text-sm text-slate-900">3. İnsan Hakları (CRPD)</div>
               <div className="text-xs text-emerald-700 font-semibold mt-0.5">Birey = Hak Öznesi!</div>
-              <div className="text-xs text-slate-600 mt-1">2006 BM Sözleşmesi · Devletin görevi</div>
+              <div className="text-xs text-slate-600 mt-1">Onur, özerklik ve devletin ödevi</div>
             </div>
           </div>
         </div>
       );
 
-    // u3-t2: Biçimsel Eşitlik vs Maddi Eşitlik, Makul Düzenleme ve Evrensel Tasarım
-    case "u3-t2":
-      return (
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel Fark Şeması · Sınavda En Çok Çıkan 4 Kavram
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
-            <div className="bg-white border-2 border-rose-200 rounded-xl p-3">
-              <div className="text-xl mb-1">📏</div>
-              <div className="font-bold text-xs text-slate-900">Biçimsel Eşitlik</div>
-              <div className="text-[11px] text-slate-600 mt-1">
-                Herkese aynı merdiveni vermek <strong>(Adaletsiz!)</strong>
-              </div>
-            </div>
-            <div className="bg-white border-2 border-emerald-200 rounded-xl p-3">
-              <div className="text-xl mb-1">⚖️</div>
-              <div className="font-bold text-xs text-slate-900">Maddi Eşitlik</div>
-              <div className="text-[11px] text-slate-600 mt-1">
-                Görme engelliye <strong>ek sınav süresi</strong> vermek
-              </div>
-            </div>
-            <div className="bg-white border-2 border-amber-300 rounded-xl p-3">
-              <div className="text-xl mb-1">👤</div>
-              <div className="font-bold text-xs text-slate-900">Makul Düzenleme</div>
-              <div className="text-[11px] text-slate-600 mt-1">
-                <strong>Tek 1 kişiye</strong> özel masa/saat uyarlaması
-              </div>
-            </div>
-            <div className="bg-white border-2 border-purple-200 rounded-xl p-3">
-              <div className="text-xl mb-1">🚪</div>
-              <div className="font-bold text-xs text-slate-900">Evrensel Tasarım</div>
-              <div className="text-[11px] text-slate-600 mt-1">
-                En baştan <strong>herkes için</strong> düz girişli bina
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-
-    // u3-t3: BM Sözleşmesi (CRPD) Kritik Maddeleri (Madde 3'ten 29'a Şifreli Liste)
-    case "u3-t3":
-      return (
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel Harita · BM CRPD Sınavda Çıkan 6 Altın Madde
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-            <div className="bg-white border border-slate-200 rounded-xl p-3">
-              <span className="font-mono text-xs font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Madde 5</span>
-              <div className="font-bold text-xs text-slate-900 mt-1.5">Eşitlik & Ayrımcılık</div>
-              <div className="text-[11px] text-slate-600">Makul düzenleme reddi = Ayrımcılık</div>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-3">
-              <span className="font-mono text-xs font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Madde 9</span>
-              <div className="font-bold text-xs text-slate-900 mt-1.5">Erişilebilirlik</div>
-              <div className="text-[11px] text-slate-600">Bina, ulaşım ve dijital erişim</div>
-            </div>
-            <div className="bg-white border-2 border-amber-300 rounded-xl p-3">
-              <span className="font-mono text-xs font-black text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Madde 12 ★</span>
-              <div className="font-bold text-xs text-slate-900 mt-1.5">Yasal Ehliyet</div>
-              <div className="text-[11px] text-slate-600">Vasi yerine <strong>Destekli Karar Verme!</strong></div>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-3">
-              <span className="font-mono text-xs font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Madde 19</span>
-              <div className="font-bold text-xs text-slate-900 mt-1.5">Bağımsız Yaşam</div>
-              <div className="text-[11px] text-slate-600">Kuruma kapatma değil, toplum içi yaşam</div>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-3">
-              <span className="font-mono text-xs font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Madde 24</span>
-              <div className="font-bold text-xs text-slate-900 mt-1.5">Kapsayıcı Eğitim</div>
-              <div className="text-[11px] text-slate-600">Ayrı okul değil, akranlarla aynı sınıf</div>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-3">
-              <span className="font-mono text-xs font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Madde 27</span>
-              <div className="font-bold text-xs text-slate-900 mt-1.5">Çalışma & İstihdam</div>
-              <div className="text-[11px] text-slate-600">Açık iş gücü piyasasında eşit ücret</div>
-            </div>
-          </div>
-        </div>
-      );
-
-    // u3-t4: Türkiye Hukuki Çerçevesi (Anayasa 10-42-61, 5378) ve Erişim Zinciri
+    // u3-t4: Evrensel Tasarım, Erişilebilirlik ve Makul Düzenleme
     case "u3-t4":
+      return (
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
+            Görsel Fark Şeması · Evrensel Tasarım vs Erişilebilirlik vs Makul Düzenleme
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+            <div className="bg-white border-2 border-purple-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">🚪</div>
+              <div className="font-bold text-sm text-slate-900">Evrensel Tasarım</div>
+              <div className="text-xs font-bold text-purple-700 mt-0.5">En Baştan Herkes İçin</div>
+              <div className="text-xs text-slate-600 mt-1">
+                Ek uyarlamaya gerek kalmadan <strong>tüm insanların</strong> kullanabildiği tasarım.
+              </div>
+            </div>
+            <div className="bg-white border-2 border-blue-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">♿</div>
+              <div className="font-bold text-sm text-slate-900">Erişilebilirlik</div>
+              <div className="text-xs font-bold text-blue-700 mt-0.5">Genel & Önleyici</div>
+              <div className="text-xs text-slate-600 mt-1">
+                Bina, ulaşım ve web sitelerinin <strong>gruplar için</strong> önceden ulaşılabilir olması.
+              </div>
+            </div>
+            <div className="bg-white border-2 border-amber-300 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">👤</div>
+              <div className="font-bold text-sm text-slate-900">Makul Düzenleme</div>
+              <div className="text-xs font-bold text-amber-800 mt-0.5">Bireysel & Somut Durum</div>
+              <div className="text-xs text-slate-600 mt-1">
+                <strong>Tek bir kişiye</strong> özel masa/sınav uyarlaması. <strong>Reddi ayrımcılıktır!</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    // u3-t14: Türkiye Hukuki Çerçevesi (Anayasa 10-42-61-90 ve 5378)
+    case "u3-t14":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 space-y-3">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 text-center">
-            Görsel Erişim Zinciri · Bir Halka Koparsa Tüm Zincir Kopar!
+            Görsel Hukuk Piramidi · Anayasa Maddeleri ve 5378 Sayılı Kanun
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 text-center">
-            {["1. Evden Çıkış", "2. Kaldırım", "3. Durak", "4. Otobüs", "5. Bina Girişi", "6. Bilgi/Web"].map((step, i) => (
-              <div key={i} className="bg-white border border-blue-200 rounded-lg p-2 text-[11px] font-bold text-slate-800">
-                {step}
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center pt-1">
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-2 text-xs">
-              <strong>Anayasa Md. 10:</strong> Pozitif Ayrımcılık
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+            <div className="bg-white border-2 border-amber-200 rounded-xl p-3 text-xs">
+              <div className="font-black text-amber-800 text-sm">Anayasa Md. 10</div>
+              <div className="text-slate-600 mt-1">Kanun önünde eşitlik & pozitif tedbirler</div>
             </div>
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-2 text-xs">
-              <strong>Anayasa Md. 42:</strong> Eğitim Hakkı
+            <div className="bg-white border-2 border-blue-200 rounded-xl p-3 text-xs">
+              <div className="font-black text-blue-800 text-sm">Anayasa Md. 42</div>
+              <div className="text-slate-600 mt-1">Kimse eğitim hakkından yoksun bırakılamaz</div>
             </div>
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-2 text-xs">
-              <strong>Anayasa Md. 61:</strong> Devlet Korur
+            <div className="bg-white border-2 border-purple-200 rounded-xl p-3 text-xs">
+              <div className="font-black text-purple-800 text-sm">Anayasa Md. 61</div>
+              <div className="text-slate-600 mt-1">Devlet engellileri korur ve intibak sağlar</div>
             </div>
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-2 text-xs">
-              <strong>5378 Kanun:</strong> 2005 Temel Yasa
+            <div className="bg-white border-2 border-emerald-200 rounded-xl p-3 text-xs">
+              <div className="font-black text-emerald-800 text-sm">5378 Kanunu</div>
+              <div className="text-slate-600 mt-1">2005 tarihli Engelliler Hakkında Kanun</div>
             </div>
           </div>
         </div>
       );
 
-    // u4-t1: Fiziksel Engellilik Türleri: Omurilik Yaralanması, Serebral Palsi ve Kas Hastalıkları
-    case "u4-t1":
+    // u4-t2: Omurilik Yaralanmaları: Parapleji vs Tetrapleji
+    case "u4-t2":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel Beden Şeması · Parapleji vs Tetrapleji vs Serebral Palsi
+            Görsel Beden Şeması · Omurilik Yaralanmalarında Parapleji vs Tetrapleji
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="bg-white border-2 border-blue-200 rounded-xl p-3.5 text-center">
               <div className="text-2xl mb-1">🦵</div>
               <div className="font-bold text-sm text-slate-900">Parapleji</div>
-              <div className="text-xs font-bold text-blue-700 mt-0.5">Belden Aşağı (2 Uzuv)</div>
+              <div className="text-xs font-bold text-blue-700 mt-0.5">Belden Aşağı (Bacaklar)</div>
               <div className="text-xs text-slate-600 mt-1">
                 Sırt/bel omuriliği (Örn: T10) yaralanması. <strong>Kollar sağlam, bacaklar felç.</strong>
               </div>
@@ -516,58 +478,58 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
                 Boyun (Servikal) yaralanması. <strong>Hem kollar hem bacaklar</strong> etkilenir.
               </div>
             </div>
-            <div className="bg-white border-2 border-emerald-200 rounded-xl p-3.5 text-center">
-              <div className="text-2xl mb-1">🧠</div>
-              <div className="font-bold text-sm text-slate-900">Serebral Palsi (SP)</div>
-              <div className="text-xs font-bold text-emerald-700 mt-0.5">İlerleyici Değildir!</div>
+            <div className="bg-white border-2 border-rose-200 rounded-xl p-3.5 text-center">
+              <div className="text-2xl mb-1">🛏️</div>
+              <div className="font-bold text-sm text-slate-900">İkincil Sorunlar</div>
+              <div className="text-xs font-bold text-rose-700 mt-0.5">Bası Yarası & Mesane</div>
               <div className="text-xs text-slate-600 mt-1">
-                Erken beyin gelişiminde oluşan kalıcı ama <strong>kötüleşmeyen</strong> kas/duruş bozukluğu.
+                Dekübit (bası yarası), spastisite ve mesane-bağırsak kontrol sorunları.
               </div>
             </div>
           </div>
         </div>
       );
 
-    // u4-t2: DSÖ ICF Sınıflandırması (2001) ve Türkiye İstatistikleri / Raporlar
-    case "u4-t2":
+    // u4-t5: DSÖ ICF Sınıflandırması (2001)
+    case "u4-t5":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
-            Görsel İnfografik · DSÖ ICF Modeli & ÇÖZGER / Erişkin Raporu
+            Görsel İnfografik · DSÖ ICF (2001) Biyopsikososyal Modeli
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="bg-white border-2 border-blue-200 rounded-xl p-3.5">
               <div className="font-bold text-xs text-blue-800 uppercase mb-2">
-                🧩 DSÖ ICF (2001) Biyopsikososyal Model
+                🧩 1. İşlevsellik ve Yetiyitimi Boyutu
               </div>
               <div className="space-y-1.5 text-xs text-slate-700">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                  <span><strong>Vücut Yapısı & İşlevi</strong> (Anatomik durum)</span>
+                  <span><strong>Vücut Yapısı & İşlevi</strong> (Kas gücü, organ yapısı)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                  <span><strong>Etkinlik & Katılım</strong> (Günlük yaşam & toplum)</span>
+                  <span><strong>Etkinlik</strong> (Yürüme, giyinme gibi bireysel görevler)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-                  <span><strong>Çevresel & Kişisel Faktörler</strong> (Rampa, aile)</span>
+                  <span><strong>Katılım</strong> (Okul, iş ve toplumsal yaşamda yer alma)</span>
                 </div>
               </div>
             </div>
 
             <div className="bg-white border-2 border-emerald-200 rounded-xl p-3.5">
               <div className="font-bold text-xs text-emerald-800 uppercase mb-2">
-                📋 ÇÖZGER vs Erişkin Sağlık Raporu
+                🌍 2. Bağlamsal Etkenler (Farkı Yaratan!)
               </div>
               <div className="grid grid-cols-2 gap-2 text-center">
                 <div className="bg-amber-50 border border-amber-200 rounded-lg p-2">
-                  <div className="font-bold text-xs text-amber-900">👶 18 Yaş Altı</div>
-                  <div className="text-[11px] text-slate-700 mt-0.5"><strong>ÇÖZGER</strong> (ÖKGV ibaresi)</div>
+                  <div className="font-bold text-xs text-amber-900">🏙️ Çevresel</div>
+                  <div className="text-[11px] text-slate-700 mt-0.5">Asansör, rampa, aile tutumu, gelir, yasalar</div>
                 </div>
                 <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-2">
-                  <div className="font-bold text-xs text-emerald-900">🧑 18 Yaş Üstü</div>
-                  <div className="text-[11px] text-slate-700 mt-0.5"><strong>Erişkin (%40+)</strong> Balthazard</div>
+                  <div className="font-bold text-xs text-emerald-900">👤 Kişisel</div>
+                  <div className="text-[11px] text-slate-700 mt-0.5">Yaş, cinsiyet, eğitim, baş etme gücü</div>
                 </div>
               </div>
             </div>
@@ -575,8 +537,9 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
         </div>
       );
 
-    // u4-t3: İstihdam Kotaları (4857 & 657), Sosyal Yardımlar (2022 & 2828) ve Bakım
-    case "u4-t3":
+    // u4-t8 & u4-t9: İstihdam Kotaları ve Sosyal Yardımlar
+    case "u4-t8":
+    case "u4-t9":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
@@ -601,14 +564,47 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
             <div className="bg-white border-2 border-amber-200 rounded-xl p-3">
               <div className="font-mono font-black text-base text-amber-700">2828</div>
               <div className="font-bold text-xs text-slate-900 mt-1">Evde Bakım</div>
-              <div className="text-[11px] text-slate-600 mt-0.5">"Tam Bağımlı" + Gelir &lt; 2/3</div>
+              <div className="text-[11px] text-slate-600 mt-0.5">"Tam Bağımlı" + Umut Evleri</div>
             </div>
           </div>
         </div>
       );
 
-    // u4-t4: Multidisipliner Ekip, Etik Dil ve Vaka Analizi: Mert (24 Yaş, Parapleji)
-    case "u4-t4":
+    // u4-t14: Hak Temelli Etik İletişim ve Dil
+    case "u4-t14":
+      return (
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
+            Görsel İletişim Etiği · 3 Altın Kural
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+            <div className="bg-white border-2 border-emerald-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">🗣️</div>
+              <div className="font-bold text-sm text-slate-900">Doğru Dil Kullan</div>
+              <div className="text-xs text-slate-600 mt-1">
+                "Sandalyeye mahkûm / özürlü" DEĞİL; <strong>"Tekerlekli sandalye kullanan kişi"</strong>.
+              </div>
+            </div>
+            <div className="bg-white border-2 border-blue-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">👀</div>
+              <div className="font-bold text-sm text-slate-900">Doğrudan Konuş</div>
+              <div className="text-xs text-slate-600 mt-1">
+                Refakatçiye değil <strong>doğrudan kişinin kendisine</strong> hitap et ve göz hizasına in.
+              </div>
+            </div>
+            <div className="bg-white border-2 border-rose-200 rounded-xl p-3.5">
+              <div className="text-2xl mb-1">✋</div>
+              <div className="font-bold text-sm text-slate-900">İzinsiz Dokunma!</div>
+              <div className="text-xs text-slate-600 mt-1">
+                Sandalye ve beyaz baston <strong>bedenin uzantısıdır</strong>; izin almadan itme/tutma.
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    // u4-t15: Mert Vakası
+    case "u4-t15":
       return (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
@@ -617,35 +613,46 @@ export const TopicVisualDiagram: React.FC<TopicVisualDiagramProps> = ({ topicId 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="bg-white border-2 border-amber-200 rounded-xl p-3.5">
               <div className="text-xs font-bold text-amber-800 uppercase">🎯 1. Mikro Düzey</div>
-              <div className="font-bold text-sm text-slate-900 mt-0.5">Mert ve Ailesi</div>
+              <div className="font-bold text-sm text-slate-900 mt-0.5">Mert (Bireysel)</div>
               <div className="text-xs text-slate-600 mt-1">
-                Yas danışmanlığı, babanın <strong>"kuruma yatırma"</strong> fikrini değiştirme ve ev içi tadilat (Ergoterapist ile).
+                Psikososyal destek, sağlık raporu, 2022/2828 maaşı ve <strong>İŞKUR/EKPSS</strong> yönlendirmesi.
               </div>
             </div>
             <div className="bg-white border-2 border-emerald-200 rounded-xl p-3.5">
-              <div className="text-xs font-bold text-emerald-800 uppercase">🤝 2. Mezo Düzey</div>
-              <div className="font-bold text-sm text-slate-900 mt-0.5">Akran & Kurumlar</div>
+              <div className="text-xs font-bold text-emerald-800 uppercase">🤝 2. Mezzo Düzey</div>
+              <div className="font-bold text-sm text-slate-900 mt-0.5">Aile & Akran Grubu</div>
               <div className="text-xs text-slate-600 mt-1">
-                Omurilik felçlileri <strong>akran grubu</strong> ile tanıştırma, engelsiz ulaşım ve meslek kursu.
+                Aile danışmanlığı (kuruma yatırma yerine ev içi destek), <strong>akran grubu</strong> ve bina rampası.
               </div>
             </div>
             <div className="bg-white border-2 border-blue-200 rounded-xl p-3.5">
               <div className="text-xs font-bold text-blue-800 uppercase">🏛️ 3. Makro Düzey</div>
-              <div className="font-bold text-sm text-slate-900 mt-0.5">Hak & Politika</div>
+              <div className="font-bold text-sm text-slate-900 mt-0.5">Belediye & Politika</div>
               <div className="text-xs text-slate-600 mt-1">
-                <strong>EKPSS / İş-Kur</strong> istihdam yönlendirmesi, evde bakım aylığı ve belediye rampa savunuculuğu.
+                İlçedeki kaldırım/ulaşım engellerinin belediyeye ve <strong>Erişilebilirlik Komisyonu'na</strong> bildirimi.
               </div>
             </div>
           </div>
         </div>
       );
 
-    default:
+    default: {
+      // Automatic 3-column breakdown from keepInMind ("A | B | C") if ever needed
+      const parts = (keepInMind || "").split("|").map((s) => s.trim()).filter(Boolean);
       return (
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center gap-3">
-          <AlertTriangle className="w-5 h-5 text-blue-600 shrink-0" />
-          <span className="text-xs text-slate-600">Görsel hafıza kartı yüklendi.</span>
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
+            Görsel Hafıza Şifresi
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+            {parts.slice(0, 3).map((part, i) => (
+              <div key={i} className="bg-white border-2 border-blue-200 rounded-xl p-3.5">
+                <div className="text-xs font-bold text-slate-800">{part}</div>
+              </div>
+            ))}
+          </div>
         </div>
       );
+    }
   }
 };
